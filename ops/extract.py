@@ -4,6 +4,7 @@ import requests
 import lxml
 from lxml.etree import HTML
 import re
+import urlparse
 
 def get_tree(url):
     resp = requests.get(url)
@@ -13,7 +14,6 @@ def src_tree(src):
     return HTML(src)
 
 class PDXAuditor(object):
-    base = 'http://www.portlandonline.com'
 
     def fetch_tree(self, url=None, src=None):
         if src:
@@ -22,6 +22,7 @@ class PDXAuditor(object):
             return get_tree(self.url)
 
 class ExtractYearIndex(PDXAuditor):
+    base = 'http://www.portlandonline.com'
 
     def __init__(self, url='/auditor/index.cfm?c=56676'):
         self.url = '{}{}'.format(self.base, url)
@@ -36,13 +37,36 @@ class ExtractYearIndex(PDXAuditor):
         return { int(re.findall('([0-9]{4})', a.text)[0]): a.attrib['href']\
                     for a in links if re.findall('([0-9]{4})', a.text) } 
 
-class ExtractMinutesList(object):
+class ExtractMinutesList(PDXAuditor):
+    base = 'http://efiles.portlandoregon.gov/'
+    #'webdrawer/rec/4187317/ '
+    path = 'webdrawer.dll/webdrawer/search/rec'
     
-    def __init__(self, url):
-        self.url = url
-
-    def minutes_year_list(self, url):
+    def __init__(self):
         pass
+
+    def minutes_list_url(self, index):
+        query = {'rows': ['100'],
+            'sm_ncontents': ['uri_{}'.format(index)],
+            'sort1': ['rs_datecreated'],
+            'template': ['reclist']}
+
+        '''
+        sm_ncontents=uri_4187317
+        &sort1=rs_datecreated
+        &count&template=reclist_contents&rows=150
+        '''
+
+        qstr = '&'.join(['{}={}'.format(k,v[0]) for k,v in query.iteritems()])
+        return '{}{}?{}'.format(self.base, self.path, qstr)
+        
+    def year_minutes_list(self, index, src=None):
+        query = {'rows': ['50'],
+            'sm_ncontents': ['uri_{}'.format(index)],
+            'sort1': ['rs_datecreated'],
+            'template': ['reclist']}
+        path = 'webdrawer.dll/webdrawer/search/rec/'
+
 
 
 class ExtractMinutes(object):

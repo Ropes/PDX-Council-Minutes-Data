@@ -3,13 +3,12 @@ import unittest
 from sys import stderr
 from pprint import pformat
 
-from ops.extract import ExtractYearIndex
+from ops.extract import (ExtractYearIndex, ExtractMinutesList)
 
 base_resources = 'tests/resources/'
 
 class TestExtract(unittest.TestCase):
 
-    
     def test_minutes_of_year(self):
         path = base_resources+'index.cfm?c=56676'
         eyi = ExtractYearIndex()
@@ -27,4 +26,8 @@ class TestExtract(unittest.TestCase):
             'http://efiles.portlandoregon.gov/webdrawer/rec/3029951/')
 
 
+    def test_minutes_list_query(self):
+        eml = ExtractMinutesList()
+        x = eml.minutes_list_url(4187317)
+        print(x, file=stderr)
 
