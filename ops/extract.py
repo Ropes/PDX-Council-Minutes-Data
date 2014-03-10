@@ -1,11 +1,13 @@
-from __future__ import unicode_literals, print_function
+from __future__ import unicode_literals
 
 import requests
 import lxml
+from lxml.etree import HTML
+import re
 
-def get_tree( url):
+def get_tree(url):
     resp = requests.get(url)
-    return lxml.etree.HTML(resp.text)
+    return HTML(resp.text)
 
 class PDXAuditor(object):
     base = 'http://www.portlandonline.com'
@@ -31,6 +33,7 @@ class ExtractMinutesList(object):
         self.url = url
 
     def minutes_year_list(self, url):
+        pass
 
 
 class ExtractMinutes(object):
@@ -39,6 +42,3 @@ class ExtractMinutes(object):
     def __init__(self, url=None):
         pass
 
-    def 
-
-    
