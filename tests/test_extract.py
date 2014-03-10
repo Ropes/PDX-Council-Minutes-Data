@@ -1,6 +1,7 @@
 from __future__ import unicode_literals, print_function
 import unittest
 from sys import stderr
+import datetime
 from pprint import pformat
 
 from ops.extract import (ExtractYearIndex, ExtractMinutesList)
@@ -19,7 +20,7 @@ class TestExtract(unittest.TestCase):
             eyi.src = src
 
             d = eyi.minute_year_index()
-            print(pformat(d), file=stderr)
+            #print(pformat(d), file=stderr)
             self.assertIn(2011, d)
             self.assertIn(1999, d)
             self.assertEqual(d[2006],\
@@ -29,13 +30,20 @@ class TestExtract(unittest.TestCase):
     def test_minutes_list_query(self):
         eml = ExtractMinutesList()
         x = eml.minutes_list_url(4187317)
-        print(x, file=stderr)
+        #print(x, file=stderr)
 
 
     def test_minutes_list_files(self):
         index = 4187317
         eml = ExtractMinutesList()
-        x = eml.year_minutes_list(index)
-        print(pformat(x), file=stderr)
+
+        path = base_resources+'minutes_list.html'
+        with open(path, 'r') as f:
+            src = f.read()
+            eml.url = None
+            x = eml.year_minutes_list(index, src=src)
+            #print(pformat(x), file=stderr)
+            self.assertGreater(len(x), 10)
+            self.assertIn(datetime.datetime(2011, 12, 21, 0, 0), x)
 
 

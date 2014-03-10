@@ -53,7 +53,6 @@ def parse_minute_row(a):
 
 class ExtractMinutesList(PDXAuditor):
     base = 'http://efiles.portlandoregon.gov/'
-    #'webdrawer/rec/4187317/ '
     path = 'webdrawer.dll/webdrawer/search/rec'
     
     def __init__(self):
