@@ -8,7 +8,7 @@ Using scrapy, pull web assets and parse the html data for subject data.
 
 TODO: Pull up page of Multnomah county or Portland board meeting page
 [Multnoma Board Records](http://multnomah.granicus.com/ViewPublisher.php?view_id=3)
-[Portland Council Records](http://www.portlandonline.com/auditor/index.cfm?c=56674)
+[Portland Council Records](http://www.portlandonline.com/auditor/index.cfm?c=56676)
  * Construct list of available Minutes documents
  * Pull all Minute documents not previously processed
     * Each Minutes doc is it's own directory/Task which is delimited by a UID
