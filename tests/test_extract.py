@@ -31,3 +31,11 @@ class TestExtract(unittest.TestCase):
         x = eml.minutes_list_url(4187317)
         print(x, file=stderr)
 
+
+    def test_minutes_list_files(self):
+        index = 4187317
+        eml = ExtractMinutesList()
+        x = eml.year_minutes_list(index)
+        print(pformat(x), file=stderr)
+
+

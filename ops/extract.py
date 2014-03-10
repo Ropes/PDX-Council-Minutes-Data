@@ -1,10 +1,13 @@
 from __future__ import unicode_literals
 
+import re
+import urlparse
+from datetime import datetime
+
 import requests
 import lxml
 from lxml.etree import HTML
-import re
-import urlparse
+
 
 def get_tree(url):
     resp = requests.get(url)
@@ -37,13 +40,25 @@ class ExtractYearIndex(PDXAuditor):
         return { int(re.findall('([0-9]{4})', a.text)[0]): a.attrib['href']\
                     for a in links if re.findall('([0-9]{4})', a.text) } 
 
+def parse_minute_row(a):
+    dl_url = a.xpath('td[@class="iframe_reclist_icon_view"]/a')[0]\
+                                                    .attrib['href']
+    dtstr = a.xpath('td[@style="text-align:right;white-space:nowrap;"]')\
+                                                    [0].text.strip()
+    date = datetime.strptime(dtstr, '%m/%d/%Y')
+    print('{}, {}'.format(date, dl_url))
+
+    return date, dl_url
+
+
 class ExtractMinutesList(PDXAuditor):
     base = 'http://efiles.portlandoregon.gov/'
     #'webdrawer/rec/4187317/ '
     path = 'webdrawer.dll/webdrawer/search/rec'
     
     def __init__(self):
-        pass
+        self.url = None
+        self.src = None
 
     def minutes_list_url(self, index):
         query = {'rows': ['100'],
@@ -56,12 +71,17 @@ class ExtractMinutesList(PDXAuditor):
         return '{}{}?{}'.format(self.base, self.path, qstr)
         
     def year_minutes_list(self, index, src=None):
-        query = {'rows': ['50'],
-            'sm_ncontents': ['uri_{}'.format(index)],
-            'sort1': ['rs_datecreated'],
-            'template': ['reclist']}
-        path = 'webdrawer.dll/webdrawer/search/rec/'
+        self.url = self.minutes_list_url(index)
+        tree = self.fetch_tree(url=self.url, src=src)
 
+        links = tree.xpath('/html/body/table//tr')[1:-1]
+
+        minutes = {}
+        for a in links:
+            k,v = parse_minute_row(a)
+            minutes.update({k:v})
+        return minutes
+            
 
 
 class ExtractMinutes(object):
