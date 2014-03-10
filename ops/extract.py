@@ -8,6 +8,8 @@ import requests
 import lxml
 from lxml.etree import HTML
 
+from ops.tram import minutes_data
+
 
 def get_tree(url):
     resp = requests.get(url)
@@ -83,9 +85,12 @@ class ExtractMinutesList(PDXAuditor):
             
 
 
-class ExtractMinutes(object):
-    base = 'http://www.portlandonline.com'
+def extract_path(date):
+    return minutes_data(date)
 
-    def __init__(self, url=None):
-        pass
+def extract_fetch(f_ptr, url, date):
+    resp = requests.get(url)
+    path = extract_path(date)
+
+    f_ptr.write(resp.content)
 
