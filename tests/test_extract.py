@@ -5,16 +5,26 @@ from pprint import pformat
 
 from ops.extract import ExtractYearIndex
 
+base_resources = 'tests/resources/'
 
 class TestExtract(unittest.TestCase):
+
     
     def test_minutes_of_year(self):
+        path = base_resources+'index.cfm?c=56676'
         eyi = ExtractYearIndex()
 
-        d = eyi.minute_year_index()
-        print(pformat(d))
-        self.assertIn(2011, d)
-        self.assertIn(1999, d)
+        with open(path, 'r') as f:
+            src = f.read()
+            eyi.url=None
+            eyi.src = src
+
+            d = eyi.minute_year_index()
+            print(pformat(d), file=stderr)
+            self.assertIn(2011, d)
+            self.assertIn(1999, d)
+            self.assertEqual(d[2006],\
+            'http://efiles.portlandoregon.gov/webdrawer/rec/3029951/')
 
 
 

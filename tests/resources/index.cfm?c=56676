@@ -1,0 +1,542 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<head>
+<title>Council Minutes</title>
+
+	<link rel="stylesheet" href="/auditor/4c.css">
+
+<link rel="alternate" type="application/rss+xml" title="PortlandOnline RSS Feed" href="/rss.cfm" />
+<link rel="search" title="PortlandOnline" type="application/opensearchdescription+xml" href="/opensearch.xml" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+<meta name="description" content="Council meeting minutes - 1990 through current">
+
+</head>
+<body topMargin=0 leftMargin=0 rightMargin=0 marginHeight=0 marginWidth=0>
+<script language="JavaScript" src="/shared/js/createWin.js" type="text/javascript"></script>
+<span style="position:absolute;width:100%;margin-top:21px;">
+<span id="searchBox" style="position:relative;float:right;padding-top:2px 2px 2px 0;" dis_style="background:url('/images/toolbar-po-search-bg.gif');background-repeat:repeat-x;background-color:#FFF;">
+<form style="display:inline;" name="contentSearchForm" method="get" action="/auditor/index.cfm">
+<input type="hidden" name="mode" value="search">
+<input type="hidden" name="search_action" value="SearchResults">
+<select name="filter_category_tree_id" style="width:202px;height:18px;font-size:11px;border-color:#ddd;font-family:Verdana,Arial,sans-serif;padding:0;">
+		
+			<option value="25777" >Search PortlandOnline 
+			<option value="25948" SELECTED>Search Auditor Griffin-Valade 
+			<option value="56676" >Search Council Minutes 
+	</select><label for="polSearchBox" style="display:none">Search</label><input id="polSearchBox" style="width:175px;height:18px;padding:0;font-size:11px;font-family:Verdana,Arial,sans-serif;color:#999;padding-left:4px;" name="search_words" type="text" maxlength="256" value="type your search here" onFocus="this.style.color='#000';if(this.value=='type your search here'){this.value='';}" onBlur="if(!this.value.length){this.value='type your search here';this.style.color='#999';}"><input type="image" src="/images/toolbar-po-search-go.gif" width="18" height="18" title="Search" style="position:relative;top:6px;_top:4px;margin:0;border:0;margin-right:6px;">
+</form>
+</span></span>
+
+<table id="bannerImages" border=0 cellpadding=0 cellspacing=0 width="100%" align="center">
+<tr>
+	<td height="60" width="390" background="/auditor/images/Header-Left.gif" align="right" class="headerDescription">
+	<a href="http://www.portlandonline.com/auditor/" target="_parent"><img src="/auditor/images/invisible.gif" height="33" width="390" border=0 alt="PortlandOnline"></a><br clear="all">
+	
+	</td>
+	<td width="100%" background="/auditor/images/Header-Right.gif" valign="top" align="right" class="headerLinks" alt="">
+	<span id="headerButtons" style="position:relative;z-index:50000;"><a href="/" class="header"><img src="/images/toolbar-po.gif" width="97" height="20" border=0 hspace=0 vspace=0 alt="portlandonline home"></a><a href="?login=1&show_message=1&c=56676" class="header"><img src="/images/toolbar-subscribe.gif" width="64" height="20" border=0 hspace=0 vspace=0 alt="subscribe"></a><a href="https://www.portlandonline.com/auditor/index.cfm?login=1&c=56676" class="header"><img src="/images/toolbar-signin.gif" width="48" height="20" border=0 hspace=0 vspace=0 alt="sign-in"></a></span>
+	</td>
+</tr>
+</table><font class="verySmall"><br></font><div style="text-align:center;"><div style="width:940px;margin:auto;"><SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">  if(window.event+""=="undefined"){event=null;}function HM_f_PopUp(){return false;}function HM_f_PopDown(){return false;}popUp=HM_f_PopUp;popDown=HM_f_PopDown;var hmX=0;var hmY=0;function udf_HM_f_PopUp(d,b,c,a,e){hmX=a>0?a:getLeft(c)-8;hmY=e>0?e:getTop(c)+c.offsetHeight+3;HM_f_PopUp(d,b);}function getMenuXY(a){return(a=="x")?hmX:hmY;}function getLeft(obj){xPos=eval(obj).offsetLeft;tObj=eval(obj).offsetParent;while(tObj!=null){xPos+=tObj.offsetLeft;tObj=tObj.offsetParent;}return parseInt(xPos,10);}function getTop(obj){yPos=eval(obj).offsetTop;tObj=eval(obj).offsetParent;while(tObj!=null){yPos+=tObj.offsetTop;tObj=tObj.offsetParent;}return parseInt(yPos,10);}var toggleTimeout;function hierMenuToggle(a){clearTimeout(toggleTimeout);if(obj=document.getElementById("divSubid1")){if(a){obj.style.visibility="hidden";}else{obj.style.visibility="visible";}}} </SCRIPT>
+	<SCRIPT LANGUAGE="JavaScript1.2" TYPE="text/javascript" SRC="/shared/js/hiermenus/scripts/optimized/HM_Loader.js"></script>		  
+	
+
+
+<div id="divAreaid1"  align="center">
+<table id="tabHeaderMenu" border=0 cellpadding=0 cellspacing=0>
+<tr valign="bottom" id="tabMenuTop">
+	<td rowspan=2></td>
+	<td rowspan=2></td>
+	
+		<td rowspan=2><img src="/auditor/images/top-offbutton-left.gif" width=8 height=21 border=0></td>
+		<td height="1" valign="top"><img src="/auditor/images/black.gif" height=1 width="100%" border=0 vspace=0 hspace=0 alt="side"></td>
+		<td rowspan=2><img src="/auditor/images/top-offbutton-right.gif" width=7 height=21 border=0></td>
+		
+		<td rowspan=2><img src="/auditor/images/top-offbutton-left.gif" width=8 height=21 border=0></td>
+		<td height="1" valign="top"><img src="/auditor/images/black.gif" height=1 width="100%" border=0 vspace=0 hspace=0 alt="side"></td>
+		<td rowspan=2><img src="/auditor/images/top-offbutton-right.gif" width=7 height=21 border=0></td>
+		
+		<td rowspan=2><img src="/auditor/images/top-offbutton-left.gif" width=8 height=21 border=0></td>
+		<td height="1" valign="top"><img src="/auditor/images/black.gif" height=1 width="100%" border=0 vspace=0 hspace=0 alt="side"></td>
+		<td rowspan=2><img src="/auditor/images/top-offbutton-right.gif" width=7 height=21 border=0></td>
+		
+		<td rowspan=2><img src="/auditor/images/top-offbutton-left.gif" width=8 height=21 border=0></td>
+		<td height="1" valign="top"><img src="/auditor/images/black.gif" height=1 width="100%" border=0 vspace=0 hspace=0 alt="side"></td>
+		<td rowspan=2><img src="/auditor/images/top-offbutton-right.gif" width=7 height=21 border=0></td>
+		
+		<td rowspan=2><img src="/auditor/images/top-offbutton-left.gif" width=8 height=21 border=0></td>
+		<td height="1" valign="top"><img src="/auditor/images/black.gif" height=1 width="100%" border=0 vspace=0 hspace=0 alt="side"></td>
+		<td rowspan=2><img src="/auditor/images/top-offbutton-right.gif" width=7 height=21 border=0></td>
+		
+		<td rowspan=2><img src="/auditor/images/top-offbutton-left.gif" width=8 height=21 border=0></td>
+		<td height="1" valign="top"><img src="/auditor/images/black.gif" height=1 width="100%" border=0 vspace=0 hspace=0 alt="side"></td>
+		<td rowspan=2><img src="/auditor/images/top-offbutton-right.gif" width=7 height=21 border=0></td>
+		
+		<td rowspan=2><img src="/auditor/images/top-offbutton-left.gif" width=8 height=21 border=0></td>
+		<td height="1" valign="top"><img src="/auditor/images/black.gif" height=1 width="100%" border=0 vspace=0 hspace=0 alt="side"></td>
+		<td rowspan=2><img src="/auditor/images/top-offbutton-right.gif" width=7 height=21 border=0></td>
+		
+		<td rowspan=2><img src="/auditor/images/top-offbutton-left.gif" width=8 height=21 border=0></td>
+		<td height="1" valign="top"><img src="/auditor/images/black.gif" height=1 width="100%" border=0 vspace=0 hspace=0 alt="side"></td>
+		<td rowspan=2><img src="/auditor/images/top-offbutton-right.gif" width=7 height=21 border=0></td>
+		
+	<td rowspan=2><img src="/auditor/images/black.gif" width=1 height=14></td>
+	<td rowspan=2></td>
+    <td rowspan=2></td>
+</tr>
+<tr valign="middle" align="center">
+	
+		<td height=20 nowrap class="tabMenuOff" onMouseOver="udf_HM_f_PopUp('HM_Menu1_0',event,document.getElementById('link25948'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_0')"><a id="link25948" style="position:relative;left:0;top:0;" href="/auditor/index.cfm?c=25948" class=tabMenuOff onMouseOver="udf_HM_f_PopUp('HM_Menu1_0',event,document.getElementById('link25948'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_0')">Home</a></td>
+		
+		<td height=20 nowrap class="tabMenuOff" onMouseOver="udf_HM_f_PopUp('HM_Menu1_1',event,document.getElementById('link27094'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_1')"><a id="link27094" style="position:relative;left:0;top:0;" href="/auditor/index.cfm?c=27094" class=tabMenuOff onMouseOver="udf_HM_f_PopUp('HM_Menu1_1',event,document.getElementById('link27094'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_1')">Services</a></td>
+		
+		<td height=20 nowrap class="tabMenuOff" onMouseOver="udf_HM_f_PopUp('HM_Menu1_2',event,document.getElementById('link27092'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_2')"><a id="link27092" style="position:relative;left:0;top:0;" href="/auditor/index.cfm?c=27092" class=tabMenuOff onMouseOver="udf_HM_f_PopUp('HM_Menu1_2',event,document.getElementById('link27092'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_2')">Calendar</a></td>
+		
+		<td height=20 nowrap class="tabMenuOff" onMouseOver="udf_HM_f_PopUp('HM_Menu1_3',event,document.getElementById('link27659'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_3')"><a id="link27659" style="position:relative;left:0;top:0;" href="/auditor/index.cfm?c=27659" class=tabMenuOff onMouseOver="udf_HM_f_PopUp('HM_Menu1_3',event,document.getElementById('link27659'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_3')">Publications</a></td>
+		
+		<td height=20 nowrap class="tabMenuOff" onMouseOver="udf_HM_f_PopUp('HM_Menu1_4',event,document.getElementById('link26653'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_4')"><a id="link26653" style="position:relative;left:0;top:0;" href="/auditor/index.cfm?c=26653" class=tabMenuOff onMouseOver="udf_HM_f_PopUp('HM_Menu1_4',event,document.getElementById('link26653'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_4')">Charter, Code & Policies</a></td>
+		
+		<td height=20 nowrap class="tabMenuOff" onMouseOver="udf_HM_f_PopUp('HM_Menu1_5',event,document.getElementById('link25957'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_5')"><a id="link25957" style="position:relative;left:0;top:0;" href="/auditor/index.cfm?c=25957" class=tabMenuOff onMouseOver="udf_HM_f_PopUp('HM_Menu1_5',event,document.getElementById('link25957'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_5')">Divisions</a></td>
+		
+		<td height=20 nowrap class="tabMenuOff" onMouseOver="udf_HM_f_PopUp('HM_Menu1_6',event,document.getElementById('link48008'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_6')"><a id="link48008" style="position:relative;left:0;top:0;" href="/auditor/index.cfm?c=48008" class=tabMenuOff onMouseOver="udf_HM_f_PopUp('HM_Menu1_6',event,document.getElementById('link48008'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_6')">Site Map</a></td>
+		
+		<td height=20 nowrap class="tabMenuOff" onMouseOver="udf_HM_f_PopUp('HM_Menu1_7',event,document.getElementById('link52075'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_7')"><a id="link52075" style="position:relative;left:0;top:0;" href="/auditor/index.cfm?c=52075" class=tabMenuOff onMouseOver="udf_HM_f_PopUp('HM_Menu1_7',event,document.getElementById('link52075'),0,0);" onMouseOut="HM_f_PopDown('HM_Menu1_7')">News</a></td>
+		
+</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0 align="center" width="98%" class="offbutton">
+<tr>
+	<td height="20" align="center" class="tabMenuOn" width="100%"><div ID="divSubid1"  STYLE="text-align:center;vertical-align:bottom;width:100%;overflow:hidden;">&nbsp;
+	
+	</div></td>
+</tr>
+</table>
+</div><div align="center">
+<table border=0 cellpadding=3 cellspacing=0 width="98%">
+<tr>
+	<td class="crumb" valign="top">
+	
+	<a class="tabMenuOff" href="/auditor/index.cfm?c=25777">POL</a> <img src="/auditor/images/arrow.gif" border=0 width="14" height="8"> <a class="tabMenuOff" href="/auditor/index.cfm?c=25783">Government</a> <img src="/auditor/images/arrow.gif" border=0 width="14" height="8"> <a class="tabMenuOff" href="/auditor/index.cfm?c=25999">Elected&nbsp;Officials</a> <img src="/auditor/images/arrow.gif" border=0 width="14" height="8"> <a class="tabMenuOff" href="/auditor/index.cfm?c=25948">Auditor&nbsp;Griffin-Valade</a> <img src="/auditor/images/arrow.gif" border=0 width="14" height="8"> <a class="tabMenuOff" href="/auditor/index.cfm?c=25957">Divisions</a> <img src="/auditor/images/arrow.gif" border=0 width="14" height="8"> <a class="tabMenuOff" href="/auditor/index.cfm?c=26979">Council&nbsp;Clerk/Contracts</a> <img src="/auditor/images/arrow.gif" border=0 width="14" height="8"> <a class="tabMenuOff" href="/auditor/index.cfm?c=56674">Council&nbsp;Records</a> <img src="/auditor/images/arrow.gif" border=0 width="14" height="8"> <a class="tabMenuOff" href="/auditor/index.cfm?c=56676"><strong>Council&nbsp;Minutes</strong></a> 
+	</td>
+	
+</tr>
+</table>
+</div>
+
+
+
+</div>
+<!-- body start -->
+
+<div id="polmainwrap" align="center" style="width:940px;padding-top:8px;margin:auto;">
+<table id="contentContainer" border=0 cellpadding=0 cellspacing=0 width="98%" style="padding-bottom:5px;">
+<tr>
+<td valign="top" class="pagecolumnleft"></td>
+	<td valign="top" width="100%" class="pagecolumnmiddle  " style="padding-left:8px;padding-right:8px;padding-bottom:5px;"><!-- center start --> <div class="wysiwyg"><font class="medium"><p><span class="medium"><span class="medium">&nbsp;</span></span></p>
+<p>Council minutes&nbsp;back to 1990 are available for viewing in <a title="Link to Efiles - the City of Portlands's digital document repository" href="http://www.portlandoregon.gov/efiles">Efiles</a>, the City of Portland's digital document repository.&nbsp;&nbsp;</p>
+<p>&nbsp;</p>
+<p>Efiles&nbsp;Minutes search tip:</p>
+<ul>
+<li>Go to&nbsp;<a href="http://efiles.portlandoregon.gov/webdrawer/pln/540/">http://efiles.portlandoregon.gov/webdrawer/pln/540/</a>&nbsp;</li>
+<li>Scroll down to "Search for Records within this classification".&nbsp;</li>
+<li>"Any Word" search only looks through the document title of the minutes - good place to narrow down search to a year ie. 2010.&nbsp;</li>
+<li>In the next available line use "document content" search for keyword(s) related to your topic.&nbsp;</li>
+</ul>
+<hr />
+<p>If you already know which Council date you want to review you can use one of the quick&nbsp;links below to access:</p></font></div><table border="0" cellpadding="3" cellspacing="1" width="100%"> 
+	<tr><td>
+	
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer.dll/webdrawer/rec/6100307/" target="_self">
+			2013 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 11/EF/8594<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer.dll/webdrawer/rec/6100307/" target="_self">http://efiles.portlandoregon.gov/webdrawer.dll/web...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/4618652/" target="_self">
+			2012 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 11/EF/21023<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/4618652/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/461...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/4187317/" target="_self">
+			2011 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 11/EF/2175<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/4187317/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/418...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/4129275/" target="_self">
+			2010 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 11/EF/239<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/4129275/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/412...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3998704/" target="_self">
+			2009 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 10/EF/62436<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3998704/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/399...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3897017/" target="_self">
+			2008 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 10/EF/5726<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3897017/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/389...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3699457/" target="_self">
+			2007 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 09/EF/1006<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3699457/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/369...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3029951/" target="_self">
+			2006 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 08/EF/100<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3029951/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/302...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/2965297/" target="_self">
+			2005 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 05/EF/176<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/2965297/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/296...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/2965294/" target="_self">
+			2004 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 04/EF/150<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/2965294/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/296...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/2965291/" target="_self">
+			2003 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 03/EF/149<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/2965291/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/296...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/2965285/" target="_self">
+			2002 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 02/EF/9<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/2965285/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/296...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/2965278/" target="_self">
+			2001 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 01/EF/8<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/2965278/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/296...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/2965266/" target="_self">
+			2000 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 00/EF/7<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/2965266/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/296...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3660422/" target="_self">
+			1999 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 09/EF/479<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3660422/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/366...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3660421/" target="_self">
+			1998 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 09/EF/478<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3660421/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/366...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3660420/" target="_self">
+			1997 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 09/EF/477<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3660420/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/366...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3660419/" target="_self">
+			1996 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 09/EF/476<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3660419/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/366...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3660418/" target="_self">
+			1995 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 09/EF/475<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3660418/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/366...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3660417/" target="_self">
+			1994 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 09/EF/474<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3660417/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/366...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3660416/" target="_self">
+			1993 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 09/EF/473<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3660416/" target="_self">http://efiles.portlandoregon.gov/webdrawer/rec/366...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3660415/" target="_blank">
+			1992 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 09/EF/472<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3660415/" target="_blank">http://efiles.portlandoregon.gov/webdrawer/rec/366...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3660414/" target="_blank">
+			1991 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 09/EF/471<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3660414/" target="_blank">http://efiles.portlandoregon.gov/webdrawer/rec/366...</a></em></font><br> <hr /> 
+		<div class="contentHeaderWrap">
+		<font class="contentHeader">
+			
+				<a href="http://efiles.portlandoregon.gov/webdrawer/rec/3668741/" target="_blank">
+			1990 Council Minutes 
+				</a>
+			
+		</font>
+		
+		</div>
+
+		
+		<font class="medium">Efiles E-Folder Record Number 09/EF/964<br></font> <font class="small"><em><a class="stealth" href="http://efiles.portlandoregon.gov/webdrawer/rec/3668741/" target="_blank">http://efiles.portlandoregon.gov/webdrawer/rec/366...</a></em></font><br> 
+
+	
+
+
+	</td></tr>
+	</table><div style="margin-bottom:6px;" class=""><table border=0 cellspacing=1 cellpadding=3 width="100%">
+
+</table></div><!-- center end --></td><td valign="top" class="pagecolumnright"><div style="margin-bottom:6px;" class=""><table cellspacing=1 cellpadding=3 border=0 class="widget" width="190">
+
+<tr class="widgetHeader">
+	<td class="widgetHeaderTitle" nowrap>Questions & Comments</td>
+</tr>
+
+<tr>
+	<td class="widgetData">If you have any questions or comments, please contact our <a href="mailto:susan.parsons@portlandoregon.gov?subject=Council Minutes" title="susan.parsons@portlandoregon.gov">site&nbsp;administrator</a>.</td>
+</tr>
+</table></div></td>
+</tr>
+</table>
+
+<!-- body end -->
+
+</div>
+
+
+<div style="margin-bottom:6px;" class=""><div align="center">
+		
+		<table class="footer" width="910" border=0 cellpadding=0 cellspacing=1>
+		<tr>
+			<td>
+				<table class="footer" border=0 cellpadding=3 cellspacing=0 width="100%">
+				<tr class="footer">
+			
+					<td class="footerDescription">&copy; 2014 <a class="footer" href="http://www.portlandonline.com">City of Portland, Oregon</a><br><a class="footer" href="javascript:createModalWin('/auditor/index.cfm?Popup700F23021449D50F556944DECFF89E03=1&&c=56676','Popup700F23021449D50F556944DECFF89E03',600,500,1,0,1);" rel="nofollow">Privacy&nbsp;Policy</a> - <a class="footer" href="http://www.portlandoregon.gov/bibs/62112">Accessibility</a></td>
+					<td class="footerItems" align="right"><a class=footer href="/auditor/index.cfm?c=25948">Auditor LaVonne Griffin-Valade</a> - <a class=footer href="/auditor/index.cfm?c=27094">Services</a> - <a class=footer href="/auditor/index.cfm?c=27092">Calendar</a> - <a class=footer href="/auditor/index.cfm?c=27659">Publications</a> - <a class=footer href="/auditor/index.cfm?c=26653">Charter Code & Policies</a> - <a class=footer href="/auditor/index.cfm?c=25957">Divisions</a></td>
+			
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+	</div></div>
+
+
+
+</div>
+<font class=verysmall><br clear="all"></font>
+
+
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6858269-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+	<SCRIPT LANGUAGE="JavaScript1.2">
+	  document.write('<SCR' + 'IPT LANGUAGE="JavaScript1.2" TYPE="text/javascript" SRC="/shared/js/hiermenus/config.cfm?qid=403B7D3C1691038CC475F10D090597E2&base_url=%2Fauditor%2Findex%2Ecfm"></SCR' + 'IPT>');
+	</SCRIPT>
+
+<!-- /auditor/4c.css -->
+
+<script src="https://www.google.com/jsapi"></script>
+<script src="/councilVideoDownload.js"></script>
+<script type="text/javascript">
+	if(typeof jQuery == 'undefined') {
+		google.load("jquery", "1");
+	}
+
+	google.setOnLoadCallback(function() {
+		linkifyCouncilVideos();
+	});
+</script>
+
+</body>
