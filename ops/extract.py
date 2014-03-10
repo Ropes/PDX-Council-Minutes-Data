@@ -49,15 +49,10 @@ class ExtractMinutesList(PDXAuditor):
         query = {'rows': ['100'],
             'sm_ncontents': ['uri_{}'.format(index)],
             'sort1': ['rs_datecreated'],
-            'template': ['reclist']}
+            'template': ['reclist_contents']}
 
-        '''
-        sm_ncontents=uri_4187317
-        &sort1=rs_datecreated
-        &count&template=reclist_contents&rows=150
-        '''
-
-        qstr = '&'.join(['{}={}'.format(k,v[0]) for k,v in query.iteritems()])
+        qstr = '&'.join(['{}={}'.format(k,v[0])\
+                            for k,v in query.iteritems()])
         return '{}{}?{}'.format(self.base, self.path, qstr)
         
     def year_minutes_list(self, index, src=None):
