@@ -8,7 +8,7 @@ import unittest
 from ops.extract import (ExtractYearIndex, ExtractMinutesList,\
                          extract_path, extract_fetch)
 
-base_resources = 'tests/resources/'
+base_resources = '{}/tests/resources/'.format(os.getcwd())
 
 class TestExtract(unittest.TestCase):
 
