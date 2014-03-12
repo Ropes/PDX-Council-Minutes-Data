@@ -13,7 +13,8 @@ class ExtractMinutes(Task):
         pass
 
     def output(self):
-        return LocalTarget(extract_path(self.date))
+        return LocalTarget('{}/minutes.pdf'.format(\
+                                            extract_path(self.date)))
 
     def run(self):
         with self.output.open('w') as f_ptr:
