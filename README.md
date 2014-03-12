@@ -17,12 +17,21 @@ TODO: Pull up page of Multnomah county or Portland board meeting page
 ###Transform
 Sanitize example, clean/process/stem/nlp extracted data to record.  
  * Each Minutes file is a pdf which needs to be parsed to extract headers and content data.
-    * Use PDFMiner or PyPDF to extract necessary data.
+    * Use PyPDF2 to extract text.
+    * Decide more than just text conversion is necessary.
 
 ###Loading/Save
+ * Clean data
+    * Stopword Blacklisting
+    * Stemming for language analysis
  * Index data to Elasticsearch 
     * Have alternative for simple filesystem storage
  * Feed interesting data to D3.
+
+###Analysis
+####Possibilities 
+ * Group content of text analysis by speaker's name
+ * Word content cloud
 
 ##Setup
 > pip install -r requirements.txt
