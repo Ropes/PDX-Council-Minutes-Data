@@ -63,4 +63,3 @@ class TestExtract(unittest.TestCase):
         with open('{}neh.pdf'.format(base_resources), 'wb') as f:
             extract_fetch(f, url, dt)
 
-

@@ -18,10 +18,10 @@ class TransformPDF(Task):
                                 extract_path(self.minutes_date)))
 
     def run(self):
-        with self.input.open('r') as I:
-            text = pdx_text(I)
-            with self.output.open('w') as O:
-                O.write(text)
+        with self.input().open('r') as I:
+            text = pdf_text(I)
+            with self.output().open('w') as O:
+                O.write(text.encode('utf-8'))
             
 if __name__ == '__main__':
     luigi.run()
