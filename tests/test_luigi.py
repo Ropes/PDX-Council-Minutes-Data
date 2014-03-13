@@ -20,11 +20,10 @@ class TestLuigi(unittest.TestCase):
         task = ExtractMinutes(url='http://efiles.portlandoregon.gov/webdrawer.dll/webdrawer/rec/4187324/view/',\
         date=self.date)
 
-        task_kick(sch, task)
+        task_kick(task)
 
 
     def test_transform(self):
         task = TransformPDF(self.date)
-
-        task_kick(sch, task)
+        task_kick(task)
 

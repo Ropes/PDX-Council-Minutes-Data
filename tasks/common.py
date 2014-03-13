@@ -9,8 +9,8 @@ HOST = '127.0.0.1'
 PORT = 8082
 sch = luigi.RemoteScheduler(HOST, PORT)
 
-def task_kick(sched, task):
-    worker = luigi.worker.Worker(scheduler=sched)
+def task_kick(task):
+    worker = luigi.worker.Worker(scheduler=sch)
     worker.add(task)
     worker.run()
 
