@@ -1,21 +1,25 @@
-from luigi import Task, Parameter, LocalTarget
+from __future__ import print_function, unicode_literals
+from datetime import datetime
+
+import luigi
 
 from ops.extract import (extract_path, extract_fetch)
 
-class ExtractYearsList(Task):
-    pass
-
-class ExtractMinutes(Task):
-    url = Parameter()
-    date = Parameter()
+class ExtractMinutes(luigi.Task):
+    url = luigi.Parameter()
+    date = luigi.Parameter(default=datetime.now())
 
     def require(self):
         pass
 
     def output(self):
-        return LocalTarget('{}/minutes.pdf'.format(\
+        return luigi.LocalTarget('{}/minutes.pdf'.format(\
                                             extract_path(self.date)))
 
     def run(self):
-        with self.output.open('w') as f_ptr:
+        with self.output().open('w') as f_ptr:
             extract_fetch(f_ptr, self.url, self.date)
+
+if __name__ == '__main__':
+    luigi.run()
+

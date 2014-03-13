@@ -1,3 +1,6 @@
+from __future__ import print_function, unicode_literals
+
+import luigi
 from luigi import Task, Parameter, LocalTarget
 
 from ops.transform import pdf_text
@@ -20,4 +23,5 @@ class TransformPDF(Task):
             with self.output.open('w') as O:
                 O.write(text)
             
-
+if __name__ == '__main__':
+    luigi.run()
