@@ -1,17 +1,18 @@
 from luigi import Task, Parameter, LocalTarget
 
-from ops.transform import pdx_text
+from ops.transform import pdf_text
+from ops.extract import extract_path
 from tasks.extract import ExtractMinutes
 
 class TransformPDF(Task):
-    date = Parameter()
+    minutes_date = Parameter(default=None)
 
     def requires(self):
-        return ExtractMinutes(self.date)
+        return ExtractMinutes(self.minutes_date)
 
     def output(self):
         return LocalTarget('{}/raw.text'.format(\
-                                extract_path(self.date)))
+                                extract_path(self.minutes_date)))
 
     def run(self):
         with self.input.open('r') as I:

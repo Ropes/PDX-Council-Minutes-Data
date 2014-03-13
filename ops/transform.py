@@ -1,4 +1,4 @@
-from __future__ import print_function, unicode_literal
+from __future__ import print_function, unicode_literals
 
 from PyPDF2 import PdfFileReader
 
