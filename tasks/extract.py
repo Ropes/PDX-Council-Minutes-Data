@@ -6,7 +6,7 @@ import luigi
 from ops.extract import (extract_path, extract_fetch)
 
 class ExtractMinutes(luigi.Task):
-    url = luigi.Parameter()
+    url = luigi.Parameter(default=None)
     date = luigi.Parameter(default=datetime.now())
 
     def require(self):

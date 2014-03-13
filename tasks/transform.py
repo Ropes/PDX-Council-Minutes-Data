@@ -11,7 +11,7 @@ class TransformPDF(Task):
     minutes_date = Parameter(default=None)
 
     def requires(self):
-        return ExtractMinutes(self.minutes_date)
+        return ExtractMinutes(date=self.minutes_date)
 
     def output(self):
         return LocalTarget('{}/raw.text'.format(\
