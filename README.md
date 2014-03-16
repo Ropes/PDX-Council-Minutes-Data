@@ -21,6 +21,7 @@ Sanitize example, clean/process/stem/nlp extracted data to record.
     * Decide if more than just text conversion is necessary.
  * Clean data
     * Stopword Blacklisting
+        * Requires NLTK download of 'all-corpora'
     * Stemming for language analysis?
 
 ###Loading/Save
