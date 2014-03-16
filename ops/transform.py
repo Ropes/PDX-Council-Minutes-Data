@@ -11,4 +11,4 @@ def pdf_text(pdf_file):
 
 def stop_words(text):
     stop = stopwords.words('english')
-    return ' '.join([ w for w in text.split() if w not in stop ])
+    return ' '.join([ w for w in text.split() if w.lower() not in stop ])
