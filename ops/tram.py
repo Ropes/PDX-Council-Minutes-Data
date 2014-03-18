@@ -3,6 +3,8 @@ from __future__ import unicode_literals, print_function
 import os
 from sys import stderr
 
+home = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+
 def make_dir(dir_path_list):
     if not dir_path_list:
         return os.path.realpath('.')
@@ -30,7 +32,6 @@ project_dir/data/
                 processed_data_files
 '''
 def minutes_data(date, pre_path='data'):
-    home = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
     dpl = [pre_path, unicode(date.year), unicode(date.month), unicode(date.day)]
 
     return build_path(dpl, prefix_path=home)
