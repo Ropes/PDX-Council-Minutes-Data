@@ -38,6 +38,18 @@ class StopListText(luigi.Task):
             text = stop_words(I.read())
             with self.output().open('w') as O:
                 O.write(text.encode('utf-8'))
+
+class YearList(luigi.Task):
+    minutes_date = Parameter(default=None)
             
+    def requires(self):
+        pass
+
+    def output(self):
+        pass
+
+    def run(self):
+        pass 
+
 if __name__ == '__main__':
     luigi.run()
