@@ -6,7 +6,8 @@ import luigi
 from luigi.worker import Worker
 from luigi import RemoteScheduler
 
-from tasks.extract import ExtractMinutes
+from tasks.extract import (ExtractMinutes, ExtractMinuteYearPage,\
+                    ExtractMinuteURLs, )
 from tasks.transform import TransformPDF
 from tasks.common import task_kick, sch
 
@@ -22,8 +23,17 @@ class TestLuigi(unittest.TestCase):
 
         task_kick(task)
 
+    def test_year_index(self):
+        task = ExtractMinuteYearPage(date=self.date)
+        task_kick(task)
+
+    def test_minutes_list(self):
+        task = ExtractMinuteURLs(date=self.date) 
+        task_kick(task)
+
 
     def test_transform(self):
         task = TransformPDF(self.date)
         task_kick(task)
+
 
