@@ -84,6 +84,8 @@ class ExtractMinutesList(PDXAuditor):
         return minutes
             
 
+def extract_index_from_url(url):
+    return urlparse.urlparse(url).path.split('/')[-2]    
 
 def extract_path(date):
     return minutes_data(date)

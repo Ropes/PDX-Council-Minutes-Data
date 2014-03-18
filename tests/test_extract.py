@@ -6,7 +6,7 @@ from sys import stderr
 import unittest
 
 from ops.extract import (ExtractYearIndex, ExtractMinutesList,\
-                         extract_path, extract_fetch)
+                         extract_path, extract_fetch, extract_index_from_url)
 
 base_resources = '{}/tests/resources/'.format(os.getcwd())
 
@@ -62,4 +62,11 @@ class TestExtract(unittest.TestCase):
 
         with open('{}neh.pdf'.format(base_resources), 'wb') as f:
             extract_fetch(f, url, dt)
+
+    def test_extract_index_from_url(self):
+        x = 'http://efiles.portlandoregon.gov/webdrawer/rec/3029951/'
+        index = extract_index_from_url(x)
+        self.assertEqual(index, '3029951')
+
+
 
