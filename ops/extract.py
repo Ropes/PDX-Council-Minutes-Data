@@ -1,12 +1,13 @@
-from __future__ import unicode_literals
+from __future__ import unicode_literals, print_function
 
-import re
-import urlparse
 from datetime import datetime
+import re
+from sys import stderr
+import urlparse
 
-import requests
 import lxml
 from lxml.etree import HTML
+import requests
 
 from ops.tram import minutes_data
 
@@ -91,6 +92,7 @@ def extract_path(date):
     return minutes_data(date)
 
 def extract_fetch(f_ptr, url, date):
+    #print(url, file=stderr)
     resp = requests.get(url)
     path = extract_path(date)
 
