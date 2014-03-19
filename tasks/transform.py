@@ -8,14 +8,14 @@ from ops.extract import extract_path
 from tasks.extract import ExtractMinutes
 
 class TransformPDF(Task):
-    minutes_date = Parameter(default=None)
+    date = Parameter(default=None)
 
     def requires(self):
-        return ExtractMinutes(date=self.minutes_date)
+        return ExtractMinutes(date=self.date)
 
     def output(self):
         return LocalTarget('{}/raw.text'.format(\
-                                extract_path(self.minutes_date)))
+                                extract_path(self.date)))
 
     def run(self):
         with self.input().open('r') as I:
@@ -24,14 +24,14 @@ class TransformPDF(Task):
                 O.write(text.encode('utf-8'))
 
 class StopListText(luigi.Task):
-    minutes_date = Parameter(default=None)
+    date = Parameter(default=None)
 
     def requires(self):
-        return TransformPDF(self.minutes_date)
+        return TransformPDF(self.date)
 
     def output(self):
         return LocalTarget('{}/cleaned.txt'.format(\
-                                extract_path(self.minutes_date)))
+                                extract_path(self.date)))
 
     def run(self):
         with self.input().open('r') as I:
@@ -40,7 +40,7 @@ class StopListText(luigi.Task):
                 O.write(text.encode('utf-8'))
 
 class YearList(luigi.Task):
-    minutes_date = Parameter(default=None)
+    date = Parameter(default=None)
             
     def requires(self):
         pass
