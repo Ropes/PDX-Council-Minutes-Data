@@ -14,25 +14,32 @@ from ops.extract import (extract_path, extract_fetch,ExtractYearIndex,
 class ExtractMinutes(luigi.Task):
     url = luigi.Parameter(default=None)
     date = luigi.Parameter(default=datetime.now())
-
-    def require(self):
-        pass
+    base_url = luigi.Parameter(default='http://efiles.portlandoregon.gov')
+   
+    def requires(self):
+        if self.url is None:
+            return ExtractMinuteURLs(date=self.date)
 
     def output(self):
         return luigi.LocalTarget('{}/minutes.pdf'.format(\
                                             extract_path(self.date)))
 
     def run(self):
-        with self.output().open('w') as f_ptr:
-            extract_fetch(f_ptr, self.url, self.date)
+        if not self.url is None:
+            with self.output().open('w') as f_ptr:
+                extract_fetch(f_ptr, self.url, self.date)
+        else:
+            with self.input().open('r') as I:
+                minutes_index = pickle.load(I) 
+                url = minutes_index[self.date]
+                url = '{}{}'.format(self.base_url, url)
+                with self.output().open('w') as O:
+                    extract_fetch(O, url, self.date)
+                 
 
 class ExtractMinuteYearPage(luigi.Task):
     date = luigi.Parameter(default=None)
     reset = luigi.Parameter(default=False)
-
-    def require(self):
-#TODO: Task to clean out files if reset is set
-        pass
 
     def output(self):
         dpl = ['data']

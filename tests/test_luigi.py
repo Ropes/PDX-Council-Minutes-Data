@@ -23,6 +23,11 @@ class TestLuigi(unittest.TestCase):
 
         task_kick(task)
 
+    def test_extract_minutes_wo_url(self):
+        dt = datetime(2011, 2, 2)
+        task = ExtractMinutes(date=dt)
+        task_kick(task)
+
     def test_year_index(self):
         task = ExtractMinuteYearPage(date=self.date)
         task_kick(task)
