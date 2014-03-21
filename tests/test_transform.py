@@ -37,12 +37,15 @@ class TestTransformOps(unittest.TestCase):
 
             freq_dist = freq_dist_count(stopped.split()) 
             #print(pformat(freq_dist), file=stderr)
+            self.assertGreater(len(freq_dist), 50)
 
     def test_stemming(self):
         with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
         as f:
             text = f.read().decode('utf-8')
-            print(text, file=stderr)
+            #print(text, file=stderr)
             stemmed = stem_text(text)
-            print('Stemmed:\n'+stemmed, file=stderr)
+            #print('Stemmed:\n'+stemmed, file=stderr)
+            self.assertGreater(len(stemmed.split()), 50)
             
+    
