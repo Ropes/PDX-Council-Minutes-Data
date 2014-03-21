@@ -5,7 +5,7 @@ import os
 from sys import stderr
 import unittest
 
-from ops.transform import stop_words, freq_dist_count
+from ops.transform import stop_words, freq_dist_count, stem_text
 
 base_resources = '{}/tests/resources/'.format(os.getcwd())
 
@@ -36,5 +36,13 @@ class TestTransformOps(unittest.TestCase):
             stopped = stop_words(text)  
 
             freq_dist = freq_dist_count(stopped.split()) 
-            print(pformat(freq_dist), file=stderr)
+            #print(pformat(freq_dist), file=stderr)
 
+    def test_stemming(self):
+        with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
+        as f:
+            text = f.read().decode('utf-8')
+            print(text, file=stderr)
+            stemmed = stem_text(text)
+            print('Stemmed:\n'+stemmed, file=stderr)
+            
