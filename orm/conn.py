@@ -5,16 +5,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from tasks.auth import auth
 
-print(auth)
 conn_str = 'postgresql+psycopg2://{user}:{password}@{host}/{database}'
 
 def connect_engine():
     x = conn_str.format(user=auth['user'],\
                     password=auth['password'], host='localhost',\
                     database=auth['database'])
-    print(x)
     engine = create_engine(x)
-    print(engine)
     return engine
 
 def declare_base():

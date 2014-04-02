@@ -15,4 +15,5 @@ class MinutesTokens(Base):
     created_on = Column(DateTime)
     token = Column(String(50))
     token_stemmed = Column(String(50))
+    location_index = Column(Integer)
 
