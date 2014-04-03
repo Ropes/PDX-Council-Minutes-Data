@@ -6,13 +6,15 @@ from sys import stderr
 import unittest
 
 from ops.transform import (stop_words, freq_dist_count, stem_text,\
-                freq_dist_dict)
+                freq_dist_dict, remove_punctuation)
 
 base_resources = '{}/tests/resources/'.format(os.getcwd())
 target_out = '{}/tests/target/'.format(os.getcwd())
 
 
 class TestTransformOps(unittest.TestCase):
+    ick_str = 'adams: wat, badcat. x:cat.'
+    good_str = 'adams wat badcat xcat'
 
     def test_stop_words(self):
         with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
@@ -86,4 +88,17 @@ class TestTransformOps(unittest.TestCase):
             with open('{}{}'.format(target_out, '2011-1-19freq_dist_dict'), 'w')\
             as out_file:
                 out_file.write(pformat(freq_dist))
+
+    def test_punctuation_removal_str(self):
+        x = str(self.ick_str)
+        print(type(x), file=stderr)
+        out = remove_punctuation(x)
+        self.assertEqual(out, self.good_str)
+        #print(type(out), file=stderr)
+
+    def test_punctuation_removal_unicode(self):
+        x = unicode(self.ick_str)  
+        out = remove_punctuation(x)
+        self.assertEqual(out, unicode(self.good_str))
+        #print(type(out), file=stderr)
 

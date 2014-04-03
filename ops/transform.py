@@ -1,5 +1,7 @@
 from __future__ import print_function, unicode_literals
 
+import string
+
 from PyPDF2 import PdfFileReader
 from nltk import FreqDist
 from nltk.corpus import stopwords
@@ -13,6 +15,16 @@ def pdf_text(pdf_file):
 
     pages = [ p.extractText() for p in pdf.pages ]
     return '\n'.join(pages)
+
+def remove_punctuation(text):
+    punct = ',:.'
+    if type(text) is unicode:
+        remove = {ord(c): None for c in punct}
+        return text.translate(remove)
+    elif type(text) is str:
+        return text.translate(None, str(punct))
+    else:
+        raise ValueError, 'Removing punctuation requires type to be str or unicode'
 
 def stop_words(text):
     return ' '.join([ w for w in text.split() if w.lower() not in stop ])
