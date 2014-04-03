@@ -6,7 +6,7 @@ from sys import stderr
 import unittest
 
 from ops.transform import (stop_words, freq_dist_count, stem_text,\
-                freq_dist_dict, remove_punctuation)
+                freq_dist_dict, remove_punctuation, token_index)
 
 base_resources = '{}/tests/resources/'.format(os.getcwd())
 target_out = '{}/tests/target/'.format(os.getcwd())
@@ -110,3 +110,23 @@ class TestTransformOps(unittest.TestCase):
         self.assertEqual(out, unicode(self.good_str))
         #print(type(out), file=stderr)
 
+    def test_token_index_simple(self):
+        tk_str = 'adams wat badcat xcat $9000 xcat'
+        ti = token_index(tk_str)
+        print(ti)
+        self.assertIn(1, ti['wat'])
+        self.assertIn(3, ti['xcat'])
+        self.assertIn(5, ti['xcat'])
+
+    def test_freq_dist_dict_full(self):
+        with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), 'r')\
+        as f:
+            text = f.read().decode('utf-8')
+            text = remove_punctuation(text)
+            stopped = stop_words(text)  
+            ti = token_index(stopped)
+            print(pformat(ti), file=stderr)
+            with open('{}{}'.format(target_out, '2011-1-19token_index'),\
+            
+            'w') as out_file:
+                out_file.write(pformat(ti))

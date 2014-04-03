@@ -1,6 +1,7 @@
 from __future__ import print_function, unicode_literals
 
 import string
+from collections import defaultdict
 
 from PyPDF2 import PdfFileReader
 from nltk import FreqDist
@@ -29,6 +30,13 @@ def remove_punctuation(text):
 def stop_words(text):
     return ' '.join([ w for w in text.split() if w.lower() not in stop ])
 
+def token_index(text, split_char=' '):
+    print(text)
+    index = defaultdict(list)
+    for i, t in enumerate(text.split(split_char)):
+        index[t].append(i)  
+    return dict(index)
+        
 def freq_dist_count(text):
     fdist = FreqDist(text) 
     return [ (v, k) for k,v in fdist.iteritems() ]
