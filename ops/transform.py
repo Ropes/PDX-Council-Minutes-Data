@@ -17,7 +17,7 @@ def pdf_text(pdf_file):
     return '\n'.join(pages)
 
 def remove_punctuation(text):
-    punct = ',:.?!'
+    punct = ',:.?!"\''
     if type(text) is unicode:
         remove = {ord(c): None for c in punct}
         return text.translate(remove)

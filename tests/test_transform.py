@@ -13,8 +13,8 @@ target_out = '{}/tests/target/'.format(os.getcwd())
 
 
 class TestTransformOps(unittest.TestCase):
-    ick_str = 'adams: wat, badcat. x:cat.'
-    good_str = 'adams wat badcat xcat'
+    ick_str = 'adams: wat, badcat. x:cat. $9,000'
+    good_str = 'adams wat badcat xcat $9000'
 
     def test_stop_words(self):
         with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
