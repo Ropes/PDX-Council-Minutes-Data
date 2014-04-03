@@ -85,13 +85,21 @@ class TestTransformOps(unittest.TestCase):
             freq_dist = freq_dist_dict(stopped.split()) 
             #print(pformat(freq_dist), file=stderr)
             self.assertGreater(freq_dist[u'year'], 8)
-            with open('{}{}'.format(target_out, '2011-1-19freq_dist_dict'), 'w')\
-            as out_file:
+            self.assertLess(freq_dist[u'year'], 12)
+
+            text = remove_punctuation(text)
+            stopped = stop_words(text)  
+            freq_dist = freq_dist_dict(stopped.split())
+            #print(pformat(freq_dist), file=stderr)
+            self.assertGreater(freq_dist[u'year'], 16)
+
+            with open('{}{}'.format(target_out, '2011-1-19freq_dist_dict'),\
+            
+            'w') as out_file:
                 out_file.write(pformat(freq_dist))
 
     def test_punctuation_removal_str(self):
         x = str(self.ick_str)
-        print(type(x), file=stderr)
         out = remove_punctuation(x)
         self.assertEqual(out, self.good_str)
         #print(type(out), file=stderr)
