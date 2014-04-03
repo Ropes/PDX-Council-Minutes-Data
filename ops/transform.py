@@ -21,6 +21,11 @@ def freq_dist_count(text):
     fdist = FreqDist(text) 
     return [ (v, k) for k,v in fdist.iteritems() ]
 
+def freq_dist_dict(text):
+    fdist = FreqDist(text) 
+    return { k:v for k,v in fdist.iteritems() }
+
+
 def stem_word(text):
     return stemmer.stem(text) 
 

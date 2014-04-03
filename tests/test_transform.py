@@ -5,9 +5,11 @@ import os
 from sys import stderr
 import unittest
 
-from ops.transform import stop_words, freq_dist_count, stem_text
+from ops.transform import (stop_words, freq_dist_count, stem_text,\
+                freq_dist_dict)
 
 base_resources = '{}/tests/resources/'.format(os.getcwd())
+target_out = '{}/tests/target/'.format(os.getcwd())
 
 
 class TestTransformOps(unittest.TestCase):
@@ -49,3 +51,39 @@ class TestTransformOps(unittest.TestCase):
             self.assertGreater(len(stemmed.split()), 50)
             
     
+    def test_stop_words_full(self):
+        with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), 'r')\
+        as f:
+            text = f.read().decode('utf-8')
+            stopped = stop_words(text)  
+            with open('{}{}'.format(target_out, '2011-1-19stopped'), 'w')\
+            as out_file:
+                out = ''.join(stopped)
+                out_file.write(out.encode('utf8'))
+        
+
+    def test_freq_dist_full(self):
+        with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), 'r')\
+        as f:
+            text = f.read().decode('utf-8')
+            assert type(text) == unicode
+            stopped = stop_words(text)  
+            freq_dist = freq_dist_count(stopped.split()) 
+            #print(pformat(freq_dist), file=stderr)
+            with open('{}{}'.format(target_out, '2011-1-19freq_dist_count'), 'w')\
+            as out_file:
+                out_file.write(pformat(freq_dist))
+
+
+    def test_freq_dist_dict_full(self):
+        with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), 'r')\
+        as f:
+            text = f.read().decode('utf-8')
+            stopped = stop_words(text)  
+            freq_dist = freq_dist_dict(stopped.split()) 
+            #print(pformat(freq_dist), file=stderr)
+            self.assertGreater(freq_dist[u'year'], 8)
+            with open('{}{}'.format(target_out, '2011-1-19freq_dist_dict'), 'w')\
+            as out_file:
+                out_file.write(pformat(freq_dist))
+
