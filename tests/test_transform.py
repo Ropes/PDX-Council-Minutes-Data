@@ -15,6 +15,7 @@ target_out = '{}/tests/target/'.format(os.getcwd())
 class TestTransformOps(unittest.TestCase):
     ick_str = 'adams: wat, badcat. x:cat. $9,000'
     good_str = 'adams wat badcat xcat $9000'
+    punct = ',:.?!"\''
 
     def test_stop_words(self):
         with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
@@ -100,13 +101,13 @@ class TestTransformOps(unittest.TestCase):
 
     def test_punctuation_removal_str(self):
         x = str(self.ick_str)
-        out = remove_punctuation(x)
+        out = remove_punctuation(x, punct=self.punct)
         self.assertEqual(out, self.good_str)
         #print(type(out), file=stderr)
 
     def test_punctuation_removal_unicode(self):
         x = unicode(self.ick_str)  
-        out = remove_punctuation(x)
+        out = remove_punctuation(x, punct=self.punct)
         self.assertEqual(out, unicode(self.good_str))
         #print(type(out), file=stderr)
 
@@ -125,7 +126,7 @@ class TestTransformOps(unittest.TestCase):
             text = remove_punctuation(text)
             stopped = stop_words(text)  
             ti = token_index(stopped)
-            print(pformat(ti), file=stderr)
+            #print(pformat(ti), file=stderr)
             with open('{}{}'.format(target_out, '2011-1-19token_index'),\
             
             'w') as out_file:
