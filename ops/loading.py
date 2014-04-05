@@ -22,10 +22,14 @@ def tranverse_tokens(index):
     pass
 
 def find_indexes(index, token_list, dist):
-
+    '''Finds list of indexes from the token_list which spread out the 
+    defined distance from the index both forward and behind.
+    '''
     target_indexes = range(index-dist, index+dist+1)
     target_indexes.remove(index)
 
-    return target_indexes
+    clamped = map(lambda x: min(len(token_list)-1, max(0, x)), target_indexes)
+
+    return list(set(clamped))
 
 
