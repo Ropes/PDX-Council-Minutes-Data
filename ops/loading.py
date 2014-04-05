@@ -23,10 +23,17 @@ def find_indexes(index, token_list, dist):
     defined distance from the index both forward and behind.
     '''
     target_indexes = range(index-dist, index+dist+1)
-    target_indexes.remove(index)
 
     clamped = map(lambda x: min(len(token_list)-1, max(0, x)), target_indexes)
+    unique = list(set(clamped))
+    unique.remove(index)
+    return unique
 
-    return list(set(clamped))
+def link_op(token_list, distance=10,):
+    '''Prototype to figure out what is necessary to build all the JSON
+    links.'''
+    for i,t in enumerate(token_list):
+        pass
 
+        
 

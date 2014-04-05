@@ -60,6 +60,15 @@ class TestLoadingOps(unittest.TestCase):
             self.assertEqual(token_list[min(fl)], 'Lebowski')
             self.assertNotIn(index, fl)
 
+    def test_indexes_zero(self):
+        tl = range(0,10)
+        fl = find_indexes(0, tl, 5)
+
+        assumed = set([1, 2, 3, 4, 5])
+        print(assumed)
+        print(fl)
+        self.assertEqual(set(fl), assumed)
+
     def test_indexes_high(self):
         with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
         as f:
@@ -74,5 +83,13 @@ class TestLoadingOps(unittest.TestCase):
             print(len(token_list))
             self.assertEqual('eyeball.', token_list[max(fl)])
             self.assertNotIn(index, fl)
+
+    def test_indexes_last(self):
+        tl = range(0,10)
+        fl = find_indexes(9, tl, 5)
+        assumed = {8, 7, 6, 5, 4}
+
+        self.assertEqual(set(fl), assumed)
+
 
 
