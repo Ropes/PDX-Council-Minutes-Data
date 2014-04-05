@@ -16,10 +16,7 @@ def create_link(source, target, index, distance, date=None):
     return d
 
 def create_node(token, count):
-    pass
-
-def tranverse_tokens(index):
-    pass
+    return {'token': token, 'count': count}
 
 def find_indexes(index, token_list, dist):
     '''Finds list of indexes from the token_list which spread out the 

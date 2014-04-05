@@ -32,7 +32,7 @@ class TestExtract(unittest.TestCase):
     def test_minutes_list_query(self):
         eml = ExtractMinutesList()
         x = eml.minutes_list_url(4187317)
-        print(x, file=stderr)
+        print(x)
         self.assertEqual(x, 'http://efiles.portlandoregon.gov/webdrawer.dll/webdrawer/search/rec?sort1=rs_datecreated&rows=100&sm_ncontents=uri_4187317&template=reclist_contents')
 
 

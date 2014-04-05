@@ -27,9 +27,13 @@ class TestLoadingOps(unittest.TestCase):
     def test_clamp_min(self):
         i = -1
         self.assertEqual(0, clamp(i, self.max_num, self.min_num))
+
+    def test_clamp_norm(self):
+        i = 5
+        self.assertEqual(5, clamp(i, self.max_num, self.min_num))
     
 
-    def test_links(self):
+    def test_indexes(self):
         with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
         as f:
             text = f.read().decode('utf-8')
@@ -42,7 +46,7 @@ class TestLoadingOps(unittest.TestCase):
             self.assertEqual(len(fl), 10)
 
 
-    def test_links_low(self):
+    def test_indexes_low(self):
         with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
         as f:
             text = f.read().decode('utf-8')
@@ -56,7 +60,7 @@ class TestLoadingOps(unittest.TestCase):
             self.assertEqual(token_list[min(fl)], 'Lebowski')
             self.assertNotIn(index, fl)
 
-    def test_links_high(self):
+    def test_indexes_high(self):
         with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
         as f:
             text = f.read().decode('utf-8')
