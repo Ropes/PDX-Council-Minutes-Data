@@ -32,8 +32,12 @@ def find_indexes(index, token_list, dist):
 def link_op(token_list, distance=10,):
     '''Prototype to figure out what is necessary to build all the JSON
     links.'''
+    links = []
     for i,t in enumerate(token_list):
-        pass
+        token_indexes = find_indexes(i, token_list, distance)
+        links.append([ create_link(t, token_list[ti], i, ti-i)  for ti in token_indexes ]) 
+    return links
+        
 
         
 
