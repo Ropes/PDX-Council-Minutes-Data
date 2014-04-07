@@ -2,6 +2,7 @@ from __future__ import unicode_literals, print_function
 import datetime
 from pprint import pformat
 import os
+import six
 from sys import stderr
 import unittest
 
@@ -50,6 +51,7 @@ class TestLoadingOps(unittest.TestCase):
         with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
         as f:
             text = f.read().decode('utf-8')
+            text = remove_punctuation(text)
             stopped = stop_words(text)  
 
             token_list = stopped.split()
@@ -91,5 +93,39 @@ class TestLoadingOps(unittest.TestCase):
 
         self.assertEqual(set(fl), assumed)
 
+    def test_single_index(self):
+        with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
+        as f:
+            text = f.read().decode('utf-8')
+            text = remove_punctuation(text)
+            stopped = stop_words(text)  
 
+            token_list = stopped.split()
+            i = 2
+            distance = 5
+
+            token_indexes = find_indexes(i, token_list, distance)
+            links = [ create_link(token_list[i], token_list[ti], i, ti-i)  for ti in token_indexes ]
+            print(token_list[i])
+            print(pformat(links))
+            dist_map = { i['distance']: i for i in links }
+            self.assertEqual(dist_map[-2]['target'], 'Lebowski')
+            self.assertEqual(dist_map[2]['target'], 'hell')
+            self.assertEqual(dist_map[3]['source'], 'jesus')
+
+
+
+    def test_proto_links(self):
+        with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
+        as f:
+            text = f.read().decode('utf-8')
+            text = remove_punctuation(text)
+            stopped = stop_words(text)  
+
+            token_list = stopped.split()
+            tl = link_op(token_list)
+            print(pformat(tl))
+            print(len(token_list))
+            self.assertEqual(len(token_list), 204)
+#TODO: Improve actual assertions
 
