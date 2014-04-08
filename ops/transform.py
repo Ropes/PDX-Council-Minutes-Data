@@ -29,6 +29,9 @@ def remove_punctuation(text, punct=',.?!"\''):
 def stop_words(text):
     return ' '.join([ w for w in text.split() if w.lower() not in stop ])
 
+def stop_word_placeheld(text, placeholder=''):
+    return [ w if w.lower() not in stop else placeholder for w in text.split() ]
+
 def token_index(text, split_char=' '):
     print(text)
     index = defaultdict(list)

@@ -6,7 +6,8 @@ from sys import stderr
 import unittest
 
 from ops.transform import (stop_words, freq_dist_count, stem_text,\
-                freq_dist_dict, remove_punctuation, token_index)
+                freq_dist_dict, remove_punctuation, token_index, \
+                stop_word_placeheld)
 
 base_resources = '{}/tests/resources/'.format(os.getcwd())
 target_out = '{}/tests/target/'.format(os.getcwd())
@@ -16,6 +17,7 @@ class TestTransformOps(unittest.TestCase):
     ick_str = 'adams: wat, badcat. x:cat. $9,000'
     good_str = 'adams wat badcat xcat $9000'
     punct = ',:.?!"\''
+    small_text = "The quick brown fox jumps over the lazy dog which looks like a fox so we can quick jump to get repeated words."
 
     def test_stop_words(self):
         with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
@@ -32,6 +34,14 @@ class TestTransformOps(unittest.TestCase):
         as f:
             text = f.read()
             self.assertRaises(UnicodeDecodeError, stop_words, text)
+
+    def test_stop_word_placeheld(self):
+        stopped = stop_word_placeheld(self.small_text)
+        print(pformat(stopped))
+        self.assertEqual(stopped[0], '')
+        self.assertEqual(stopped[1], 'quick')
+        self.assertEqual(stopped[6], '')
+
 
     def test_freq_dist(self):
         with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
