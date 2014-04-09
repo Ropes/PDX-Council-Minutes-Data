@@ -34,8 +34,9 @@ def link_op(token_list, distance=10,):
     links.'''
     links = []
     for i,t in enumerate(token_list):
-        token_indexes = find_indexes(i, token_list, distance)
-        links.append([ create_link(t, token_list[ti], i, ti-i)  for ti in token_indexes ]) 
+        if t != '':
+            token_indexes = find_indexes(i, token_list, distance)
+            links.extend([ create_link(t, token_list[ti], i, ti-i)  for ti in token_indexes if token_list[ti] != '' ]) 
     return links
         
 

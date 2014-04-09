@@ -8,7 +8,8 @@ import unittest
 
 from ops.loading import *
 from ops.transform import (stop_words, freq_dist_count, stem_text,\
-                freq_dist_dict, remove_punctuation, token_index)
+                freq_dist_dict, remove_punctuation, token_index,\
+                stop_word_placeheld)
 
 base_resources = '{}/tests/resources/'.format(os.getcwd())
 target_out = '{}/tests/target/'.format(os.getcwd())
@@ -16,6 +17,7 @@ target_out = '{}/tests/target/'.format(os.getcwd())
 class TestLoadingOps(unittest.TestCase):
     max_num = 10
     min_num = 0
+    small_text = "The quick brown fox jumps over the lazy dog which looks like a fox so we can quickly jump to get repeated words."
 
     def test_create_link(self):
         pass
@@ -116,16 +118,22 @@ class TestLoadingOps(unittest.TestCase):
 
 
     def test_proto_links(self):
-        with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
-        as f:
-            text = f.read().decode('utf-8')
-            text = remove_punctuation(text)
-            stopped = stop_words(text)  
+        text = self.small_text #f.read().decode('utf-8')
+        text = remove_punctuation(text)
+        stopped = stop_words(text)  
+        token_list = stopped.split()
 
-            token_list = stopped.split()
-            tl = link_op(token_list)
-            print(pformat(tl))
-            print(len(token_list))
-            self.assertEqual(len(token_list), 204)
-#TODO: Improve actual assertions
+        token_list = stop_word_placeheld(text)
+
+        tl = link_op(token_list, distance=3)
+        print(token_list)
+        print(pformat(tl))
+        print(len(token_list))
+
+        foxes = [ f for f in tl if f['source'] == 'fox' ]
+        print(pformat(foxes))
+        expected_targets = {'quick', 'brown', 'jumps', 'looks', 'like'}
+        fox_targets = { f['target'] for f in foxes }
+        self.assertEqual(expected_targets, fox_targets)
+
 
