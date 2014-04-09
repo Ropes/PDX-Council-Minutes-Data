@@ -33,7 +33,9 @@ def stop_word_placeheld(text, placeholder=''):
     return [ w if w.lower() not in stop else placeholder for w in text.split() ]
 
 def token_index(text, split_char=' '):
-    print(text)
+    '''Create dict of tokens keyed to their list of numeric index locations
+    for every occurence in the passed list.
+    '''
     index = defaultdict(list)
     for i, t in enumerate(text.split(split_char)):
         index[t].append(i)  

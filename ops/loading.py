@@ -30,8 +30,15 @@ def find_indexes(index, token_list, dist):
     return unique
 
 def link_op(token_list, distance=10,):
-    '''Prototype to figure out what is necessary to build all the JSON
-    links.'''
+    '''Taking the token list as input build all the JSON links to related tokens if not placeholders.
+
+        Params:
+        token_list -- iterable list of tokens
+
+        Keyword arguments:
+        distance -- Spread of how many tokens should be
+            linked to current index.
+    '''
     links = []
     for i,t in enumerate(token_list):
         if t != '':
@@ -39,6 +46,7 @@ def link_op(token_list, distance=10,):
             links.extend([ create_link(t, token_list[ti], i, ti-i)  for ti in token_indexes if token_list[ti] != '' ]) 
     return links
         
-
+def token_link_text(text):
+    pass
         
 
