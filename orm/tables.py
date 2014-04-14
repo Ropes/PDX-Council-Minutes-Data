@@ -1,19 +1,40 @@
-from __future__ import print_function, unicode_literals
+# coding: utf-8
+from sqlalchemy import Column, Date, ForeignKey, Integer, String
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.declarative import declarative_base
 
-from pprint import pformat
-from sqlalchemy import Column, Integer, String, Date, DateTime, MetaData
 
-from .conn import connect_engine, declare_base 
+Base = declarative_base()
+metadata = Base.metadata
 
-Base = declare_base()
 
-class MinutesTokens(Base):
-    __tablename__ = 'MinutesTokens'
+class Meetingdate(Base):
+    __tablename__ = 'MeetingDate'
 
-    id = Column(Integer, primary_key=True)
-    date = Column(Date)
-    created_on = Column(DateTime)
+    dateid = Column(Integer, primary_key=True)
+    date = Column(Date, nullable=False)
+
+
+class Token(Base):
+    __tablename__ = 'Token'
+
+    tokenid = Column(Integer, primary_key=True)
     token = Column(String(50))
-    token_stemmed = Column(String(50))
-    location_index = Column(Integer)
+    count = Column(Integer, nullable=False, server_default=u'0')
+    dateid = Column(ForeignKey('MeetingDate.dateid'), nullable=False)
 
+    MeetingDate = relationship(u'Meetingdate')
+
+
+class Tokenlink(Base):
+    __tablename__ = 'TokenLinks'
+
+    linkid = Column(Integer, primary_key=True)
+    dateid = Column(ForeignKey('MeetingDate.dateid'), nullable=False)
+    source = Column(ForeignKey('Token.tokenid'), nullable=False)
+    target = Column(ForeignKey('Token.tokenid'), nullable=False)
+    distance = Column(Integer, nullable=False)
+
+    MeetingDate = relationship(u'Meetingdate')
+    Token = relationship(u'Token', primaryjoin='Tokenlink.source == Token.tokenid')
+    Token1 = relationship(u'Token', primaryjoin='Tokenlink.target == Token.tokenid')
