@@ -4,6 +4,8 @@ from datetime import date
 import string
 from collections import defaultdict
 
+from ops.transform import (stop_word_placeheld, token_index, freq_dist_dict)
+
 def clamp(i, max_num, min_num):
     return max(min(i, max_num), min_num)
 
@@ -45,8 +47,32 @@ def link_op(token_list, distance=10,):
             token_indexes = find_indexes(i, token_list, distance)
             links.extend([ create_link(t, token_list[ti], i, ti-i)  for ti in token_indexes if token_list[ti] != '' ]) 
     return links
-        
-def token_link_text(text):
+
+class TokenNode(object):
+    token = ''
+    date = ''
+    count = 0
+    indexes = []
     pass
+
+class TokenLink(object):
+    source = ''
+    date = ''
+    target = ''
+    distance = 0
+    
+
+def create_nodes(text):
+    nodes = {}
+    freq_dist = freq_dist_dict(text)
+    return freq_dist
+        
+def token_link_text(text, spread=10):
+    '''Combine token frequency and token links together into a single JSON
+    format.'''
+    text = remove_punctuation(text)
+    token_list = stop_word_placeheld(text)
+
+    links = link_op(token_list, distance=spread)
         
 

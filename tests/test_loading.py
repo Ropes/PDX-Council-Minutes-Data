@@ -1,5 +1,6 @@
 from __future__ import unicode_literals, print_function
 import datetime
+import json
 from pprint import pformat
 import os
 import six
@@ -136,4 +137,32 @@ class TestLoadingOps(unittest.TestCase):
         fox_targets = { f['target'] for f in foxes }
         self.assertEqual(expected_targets, fox_targets)
 
+    def test_create_nodes(self):
+        text = self.small_text #f.read().decode('utf-8')
+        text = remove_punctuation(text)
+        print(text)
+        x = create_nodes(text.split())
+        print(x)
+
+        self.assertEqual(x['fox'], 2)
+        self.assertEqual(x['dog'], 1)
+
+
+    def test_create_large_nodes(self):
+        with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), 'r')\
+        as f:
+            text = f.read()
+            text = remove_punctuation(text)
+            text = stop_word_placeheld(text)
+            nodes = create_nodes(text)
+            #print(pformat(nodes))
+            self.assertEqual(nodes['parking'],  28)
+
+            links = link_op(text, 3)
+            #print(pformat(links))
+
+            json_out = {'nodes': nodes, 'links': links}
+            with open('{}/{}'.format(target_out, 'nodes_n_links.json'), 'w')\
+                as out_file:
+                out_file.write(json.dumps(json_out, indent=4 ))
 
