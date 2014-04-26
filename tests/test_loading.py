@@ -166,3 +166,12 @@ class TestLoadingOps(unittest.TestCase):
                 as out_file:
                 out_file.write(json.dumps(json_out, indent=4 ))
 
+    def test_neo4j_conn(self):
+        conn = neo4j_conn() 
+        print(conn) 
+        self.assertIsNotNone(conn)
+
+
+
+
+

@@ -6,6 +6,8 @@ from collections import defaultdict
 
 from ops.transform import (stop_word_placeheld, token_index, freq_dist_dict)
 
+from py2neo import neo4j, node, rel, ogm
+
 def clamp(i, max_num, min_num):
     return max(min(i, max_num), min_num)
 
@@ -49,18 +51,24 @@ def link_op(token_list, distance=10,):
     return links
 
 class TokenNode(object):
-    token = ''
-    date = ''
-    count = 0
-    indexes = []
-    pass
+    def __init__(self, token, count, date=None):
+        self.token = token
+        self.count = count
+        self.date = date
 
 class TokenLink(object):
-    source = ''
-    date = ''
-    target = ''
-    distance = 0
-    
+    def __init__(self, source, target, index, distance):
+        self.source = source
+        self.target = target
+        self.index = index
+        self.distance = distance
+
+def neo4j_db(host='localhost', db='data'):
+    return neo4j.GraphDatabaseService("http://{host}:7474/db/{db}/"\
+                                        .format(host=host, db=db))
+
+def neo4j_store(graph_db):
+    return ogm.Store(graph_db)
 
 def create_nodes(text):
     nodes = {}
