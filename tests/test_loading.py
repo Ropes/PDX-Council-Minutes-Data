@@ -167,11 +167,50 @@ class TestLoadingOps(unittest.TestCase):
                 out_file.write(json.dumps(json_out, indent=4 ))
 
     def test_neo4j_conn(self):
-        conn = neo4j_conn() 
+        conn = neo4j_db() 
         print(conn) 
         self.assertIsNotNone(conn)
 
+    def test_neo4j_relation_uniqueness(self):
+        db = neo4j_db()
+        store = neo4j_store(db)
 
+        cake = TokenNode('cake', 2, 0)
+        make = TokenNode('make', 2, 0)
+        flake = TokenNode('flake', 3, 0)
+        tru = TokenNode('tru', 1, 0)
+        ignore = TokenNode('ignore', 3, 0)
 
+        #store.relate(make, 'PRECEDES', tru, {'index': 5, 'distance': 1})
+        #store.save(tru)
+        #store.relate(make, 'PRECEDES', cake, {'index': 5, 'distance': 4})
+        #store.save(make)
+         
+        store.relate(ignore, 'FOLLOWS', cake, {'index': 7, 'distance':-2})
+        store.relate(flake, 'PRECEDES', tru, {'index': 5, 'distance': 1})
+        store.relate(flake, 'PRECEDES', cake, {'index': 5, 'distance': 4})
+        store.save(flake)
+        store.save(ignore)
 
+    def test_neo4j_purge(self):
+        db = neo4j_db()
+        db.clear()
+        #pass
+
+    def test_neo4j_matching(self):
+        db = neo4j_db()
+        #q = '''MATCH (a) WHERE a.token='cake' RETURN a LIMIT 100'''
+        q = '''MATCH (a) RETURN a LIMIT 100'''
+        query = neo4j.CypherQuery(db, q)
+        print(dir(query))
+        ret = query.execute()
+        print(ret)
+
+        for r in ret:
+            node = r.values[0]
+            print(node)
+            print(node.get_properties())
+            print('')
+
+        self.assertEqual(1,2)
 
