@@ -194,8 +194,8 @@ class TestLoadingOps(unittest.TestCase):
 
     def test_neo4j_purge(self):
         db = neo4j_db()
-        db.clear()
         #pass
+        db.clear()
 
     def test_neo4j_matching(self):
         db = neo4j_db()
@@ -206,11 +206,13 @@ class TestLoadingOps(unittest.TestCase):
         ret = query.execute()
         print(ret)
 
+        found = set()
         for r in ret:
             node = r.values[0]
             print(node)
             print(node.get_properties())
+            found.add(node.get_properties()['token'])
             print('')
-
-        self.assertEqual(1,2)
+        self.assertIn('cake', found)
+        self.assertIn('tru', found)
 
