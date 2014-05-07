@@ -19,5 +19,6 @@ def declare_base():
     return Base
 
 def make_session(engine):
-    return sessionmaker(bind=engine)
+    ses = sessionmaker(bind=engine)
+    return ses()
 

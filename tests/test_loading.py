@@ -11,6 +11,8 @@ from ops.loading import *
 from ops.transform import (stop_words, freq_dist_count, stem_text,\
                 freq_dist_dict, remove_punctuation, token_index,\
                 stop_word_placeheld)
+from orm.tables import Base, Meetingdate, Token, Tokenlink 
+from orm.conn import connect_engine, make_session
 
 base_resources = '{}/tests/resources/'.format(os.getcwd())
 target_out = '{}/tests/target/'.format(os.getcwd())
@@ -149,20 +151,47 @@ class TestLoadingOps(unittest.TestCase):
 
 
     def test_create_large_nodes(self):
+        engine = connect_engine()
+        session = make_session(engine)
+
+        day = datetime.date(2011,1,19)
+        m = Meetingdate(date=day)
+        #session.add(m)
+        #session.commit()
+
+        md = session.query(Meetingdate).filter(Meetingdate.date==day).all()
+        print(md)
+        md = md[0]
+        
         with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), 'r')\
         as f:
             text = f.read()
             text = remove_punctuation(text)
             text = stop_word_placeheld(text)
+
             nodes = create_nodes(text)
             #print(pformat(nodes))
             self.assertEqual(nodes['parking'],  28)
 
-            links = link_op(text, 3)
+            tok_nodes = []
+
+            for k,v in nodes.items():
+                if k:
+                    t = Token(token=k, count=v)
+                    t.MeetingDate = md
+                    tok_nodes.append(t)
+
+            for n in tok_nodes:
+                session.add(n)
+                session.flush()
+                
+            #links = link_op(text, 3)
             #print(pformat(links))
 
             json_out = {'nodes': nodes, 'links': links}
             with open('{}/{}'.format(target_out, 'nodes_n_links.json'), 'w')\
                 as out_file:
                 out_file.write(json.dumps(json_out, indent=4 ))
+
+            self.assertEqual(1,2)
 
