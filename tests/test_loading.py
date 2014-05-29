@@ -199,26 +199,31 @@ class TestLoadingOps(unittest.TestCase):
 
         day = datetime.date(2011,1,19)
         md = Meetingdate(date=day)
+        md = session.query(Meetingdate).filter(Meetingdate.date==day).all()[0]
         with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), 'r')\
         as f:
             text = f.read()
             text = remove_punctuation(text)
             text = stop_word_placeheld(text)
 
-            nodes = create_nodes(text)
-            #print(pformat(nodes))
-            self.assertEqual(nodes['parking'],  28)
-            tok_nodes = dict() 
-            for k,v in nodes.items():
-                if k:
-                    t = Token(token=k, count=v)
-                    t.MeetingDate = md
-                    tok_nodes.update({k: t})
-
-            #print(pformat(tok_nodes))
-                
             links = link_op(text, 3)
-            print(pformat(links))
+            #print(pformat(links))
+
+            for l in links:
+                dist = l['distance']
+                ind = l['index']
+                source = session.query(Token).filter(Token.token==l['source']).all()[0]
+                print('Source: {}'.format(vars(source)))
+                target = session.query(Token).filter(Token.token==l['target']).all()[0]
+                print('Target: {}'.format(vars(target)))
+
+                tl = Tokenlink(distance=dist, index=ind)
+                tl.Token = source
+                tl.Token1 = target
+                tl.MeetingDate = md
+                session.add(tl)
+
+            session.commit()
 
             json_out = {'nodes': nodes, 'links': links}
             with open('{}/{}'.format(target_out, 'nodes_n_links.json'), 'w')\

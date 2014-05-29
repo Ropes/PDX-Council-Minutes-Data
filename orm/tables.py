@@ -32,11 +32,12 @@ class Token(Base):
 class Tokenlink(Base):
     __tablename__ = 'TokenLinks'
 
-    linkid = Column(Integer, primary_key=True)
+    linkid = Column(BigInteger, primary_key=True)
     dateid = Column(ForeignKey('MeetingDate.id'), nullable=False)
     source = Column(ForeignKey('Token.tokenid'), nullable=False)
     target = Column(ForeignKey('Token.tokenid'), nullable=False)
     distance = Column(Integer, nullable=False)
+    index = Column(Integer, nullable=False)
 
     MeetingDate = relationship(u'Meetingdate')
     Token = relationship(u'Token', primaryjoin='Tokenlink.source == Token.tokenid')
