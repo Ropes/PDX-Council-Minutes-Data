@@ -155,7 +155,7 @@ class TestLoadingOps(unittest.TestCase):
         self.assertEqual(x['dog'], 1)
 
 
-    def test_create_large_nodes(self):
+    def test_insert_tokens(self):
         engine = connect_engine()
         session = make_session(engine)
 
@@ -171,29 +171,19 @@ class TestLoadingOps(unittest.TestCase):
         with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), 'r')\
         as f:
             text = f.read()
-            text = remove_punctuation(text)
-            text = stop_word_placeheld(text)
+            tokens = create_tokens(text)
 
-            #Build frequency dictionary
-            nodes = create_nodes(text)
-            #print(pformat(nodes))
-            self.assertEqual(nodes['parking'],  28)
+            self.assertEqual(tokens['parking'],  28)
 
-            tok_nodes = []
-
-            for k,v in nodes.items():
+            for k,v in tokens.items():
                 if k:
                     t = Token(token=k, count=v)
                     t.MeetingDate = md
-                    tok_nodes.append(t)
+                    session.add(t)
 
-            for n in tok_nodes:
-                pass
-                #session.add(n)
-                #session.flush()
-                #session.commit()
+            session.commit()
 
-    def test_create_large_json_nodes(self):
+    def test_insert_token_links(self):
         engine = connect_engine()
         session = make_session(engine)
 

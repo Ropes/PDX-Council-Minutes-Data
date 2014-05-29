@@ -4,7 +4,8 @@ from datetime import date
 import string
 from collections import defaultdict
 
-from ops.transform import (stop_word_placeheld, token_index, freq_dist_dict)
+from ops.transform import (stop_word_placeheld, token_index, 
+        freq_dist_dict, remove_punctuation)
 
 def clamp(i, max_num, min_num):
     return max(min(i, max_num), min_num)
@@ -77,19 +78,19 @@ def token_link_text(text, spread=10):
 
 def create_tokens(text):
     text = remove_punctuation(text)
-    return stop_word_placeheld(text)
+    text = stop_word_placeheld(text)
+    return create_nodes(text)
         
-def load_tokens_to_db(session, processed_text, meeting_date):
+def load_tokens_to_db(session, tokens, meeting_date):
     '''Create list of tokens from processed text and meeting date
     then insert into Tokens table via the session object.
     Args
     session: SQLA Session object
-    processed_text: Cleaned list of words
+    tokens: FrequencyDist eict of tokens(keys) and their doc count(value)
     meeting_date: MeetingDate orm object queried from DB
 
     Returns: Nothing 
     '''
-    tokens = create_nodes(processed_text)
     for k,v in tokens.items():
         if k:
             t = Token(token=k, count=v)
