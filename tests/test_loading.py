@@ -160,13 +160,7 @@ class TestLoadingOps(unittest.TestCase):
         session = make_session(engine)
 
         day = datetime.date(2011,1,19)
-        m = Meetingdate(date=day)
-        #session.add(m)
-        #session.commit()
-
-        md = session.query(Meetingdate).filter(Meetingdate.date==day).all()
-        print(md)
-        md = md[0]
+        md = session.query(Meetingdate).filter(Meetingdate.date==day).all()[0]
         
         with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), 'r')\
         as f:
@@ -196,28 +190,9 @@ class TestLoadingOps(unittest.TestCase):
             text = remove_punctuation(text)
             text = stop_word_placeheld(text)
 
-            links = link_op(text, 3)
-            #print(pformat(links))
+            links = link_op(text, distance=25)
 
-            for l in links:
-                dist = l['distance']
-                ind = l['index']
-                source = session.query(Token).filter(Token.token==l['source']).all()[0]
-                print('Source: {}'.format(vars(source)))
-                target = session.query(Token).filter(Token.token==l['target']).all()[0]
-                print('Target: {}'.format(vars(target)))
+            load_token_links_to_db(session, links, md)
 
-                tl = Tokenlink(distance=dist, index=ind)
-                tl.Token = source
-                tl.Token1 = target
-                tl.MeetingDate = md
-                session.add(tl)
+            #self.assertEqual(1,2)
 
-            session.commit()
-
-            json_out = {'nodes': nodes, 'links': links}
-            with open('{}/{}'.format(target_out, 'nodes_n_links.json'), 'w')\
-                as out_file:
-                out_file.write(json.dumps(json_out, indent=4 ))
-
-            self.assertEqual(1,2)

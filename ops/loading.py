@@ -6,6 +6,7 @@ from collections import defaultdict
 
 from ops.transform import (stop_word_placeheld, token_index, 
         freq_dist_dict, remove_punctuation)
+from orm.tables import Token, Tokenlink
 
 def clamp(i, max_num, min_num):
     return max(min(i, max_num), min_num)
