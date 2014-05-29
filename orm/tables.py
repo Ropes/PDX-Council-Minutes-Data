@@ -20,6 +20,9 @@ class Meetingdate(Base):
 
 class Token(Base):
     __tablename__ = 'Token'
+    __table_args__ = (
+        Index('Token_token_dateid_key', 'token', 'dateid'),
+    )
 
     tokenid = Column(BigInteger, primary_key=True)
     count = Column(Integer, nullable=False, server_default=u'0')
@@ -31,13 +34,16 @@ class Token(Base):
 
 class Tokenlink(Base):
     __tablename__ = 'TokenLinks'
+    __table_args__ = (
+        Index('TokenLinks_source_target_index_distance_dateid_key', 'source', 'target', 'index', 'distance', 'dateid'),
+    )
 
-    linkid = Column(BigInteger, primary_key=True)
     dateid = Column(ForeignKey('MeetingDate.id'), nullable=False)
     source = Column(ForeignKey('Token.tokenid'), nullable=False)
     target = Column(ForeignKey('Token.tokenid'), nullable=False)
     distance = Column(Integer, nullable=False)
     index = Column(Integer, nullable=False)
+    linkid = Column(BigInteger, primary_key=True)
 
     MeetingDate = relationship(u'Meetingdate')
     Token = relationship(u'Token', primaryjoin='Tokenlink.source == Token.tokenid')
