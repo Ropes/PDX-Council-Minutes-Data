@@ -74,5 +74,52 @@ def token_link_text(text, spread=10):
     token_list = stop_word_placeheld(text)
 
     links = link_op(token_list, distance=spread)
+
+def create_tokens(text):
+    text = remove_punctuation(text)
+    return stop_word_placeheld(text)
         
+def load_tokens_to_db(session, processed_text, meeting_date):
+    '''Create list of tokens from processed text and meeting date
+    then insert into Tokens table via the session object.
+    Args
+    session: SQLA Session object
+    processed_text: Cleaned list of words
+    meeting_date: MeetingDate orm object queried from DB
+
+    Returns: Nothing 
+    '''
+    tokens = create_nodes(processed_text)
+    for k,v in tokens.items():
+        if k:
+            t = Token(token=k, count=v)
+            t.MeetingDate = meeting_date
+            session.add(t) 
+    session.commit()
+
+def create_links(processed_text, link_dist=25):
+    return link_op(processed_text, link_dist) 
+
+def load_token_links_to_db(session, links, meeting_date):
+    '''Create Token Links within document and store data within database
+    via ORM Tokenlink objects to the TokenLinks table.
+
+    Args
+    session: SQLA Session object
+    links: List of link dicts containing: distance, index, source,and target
+    Return: Nothing
+    '''
+    for l in links:
+        source = session.query(Token)\
+                .filter(Token.token==l['source']).all()[0]
+        target = session.query(Token)\
+                .filter(Token.token==l['target']).all()[0]
+
+        tl = Tokenlink(distance=l['distance'], index=l['index'])
+        tl.Token = source
+        tl.Token1 = target
+        tl.MeetingDate = meeting_date
+        session.add(tl)
+
+    session.commit()
 
