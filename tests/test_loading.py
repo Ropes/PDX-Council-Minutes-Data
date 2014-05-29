@@ -139,6 +139,11 @@ class TestLoadingOps(unittest.TestCase):
         fox_targets = { f['target'] for f in foxes }
         self.assertEqual(expected_targets, fox_targets)
 
+    def test_create_conn(self):
+        engine = connect_engine()
+        session = make_session(engine)
+
+
     def test_create_nodes(self):
         text = self.small_text #f.read().decode('utf-8')
         text = remove_punctuation(text)
@@ -169,6 +174,7 @@ class TestLoadingOps(unittest.TestCase):
             text = remove_punctuation(text)
             text = stop_word_placeheld(text)
 
+            #Build frequency dictionary
             nodes = create_nodes(text)
             #print(pformat(nodes))
             self.assertEqual(nodes['parking'],  28)
@@ -182,11 +188,37 @@ class TestLoadingOps(unittest.TestCase):
                     tok_nodes.append(t)
 
             for n in tok_nodes:
-                session.add(n)
-                session.flush()
+                pass
+                #session.add(n)
+                #session.flush()
+                #session.commit()
+
+    def test_create_large_json_nodes(self):
+        engine = connect_engine()
+        session = make_session(engine)
+
+        day = datetime.date(2011,1,19)
+        md = Meetingdate(date=day)
+        with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), 'r')\
+        as f:
+            text = f.read()
+            text = remove_punctuation(text)
+            text = stop_word_placeheld(text)
+
+            nodes = create_nodes(text)
+            #print(pformat(nodes))
+            self.assertEqual(nodes['parking'],  28)
+            tok_nodes = dict() 
+            for k,v in nodes.items():
+                if k:
+                    t = Token(token=k, count=v)
+                    t.MeetingDate = md
+                    tok_nodes.update({k: t})
+
+            #print(pformat(tok_nodes))
                 
-            #links = link_op(text, 3)
-            #print(pformat(links))
+            links = link_op(text, 3)
+            print(pformat(links))
 
             json_out = {'nodes': nodes, 'links': links}
             with open('{}/{}'.format(target_out, 'nodes_n_links.json'), 'w')\
@@ -194,4 +226,3 @@ class TestLoadingOps(unittest.TestCase):
                 out_file.write(json.dumps(json_out, indent=4 ))
 
             self.assertEqual(1,2)
-
