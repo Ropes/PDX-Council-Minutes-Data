@@ -56,3 +56,8 @@ def stem_word(text):
 def stem_text(text):
     return ' '.join([ stem_word(t) for t in text.split() ])
 
+def process_text(text):
+    '''Returns list of cleaned tokens'''
+    text = remove_punctuation(text)
+    return stop_word_placeheld(text)
+
