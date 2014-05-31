@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div>{{ id }}</div>
+<div>{{ token }}</div>
+<ul>
+    {% for r in rows %}
+    <li>{{ r }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
