@@ -13,6 +13,7 @@ from ops.transform import (stop_words, freq_dist_count, stem_text,\
                 stop_word_placeheld)
 from orm.tables import Base, Meetingdate, Token, Tokenlink 
 from orm.conn import connect_engine, make_session
+from sqlalchemy import text
 
 base_resources = '{}/tests/resources/'.format(os.getcwd())
 target_out = '{}/tests/target/'.format(os.getcwd())
@@ -21,6 +22,11 @@ class TestLoadingOps(unittest.TestCase):
     max_num = 10
     min_num = 0
     small_text = "The quick brown fox jumps over the lazy dog which looks like a fox so we can quickly jump to get repeated words."
+    
+    @classmethod
+    def setUpClass(cls):
+        cls.engine = connect_engine()
+        cls.session = make_session(cls.engine)
 
     def test_create_link(self):
         pass
@@ -195,4 +201,24 @@ class TestLoadingOps(unittest.TestCase):
             load_token_links_to_db(session, links, md)
 
             #self.assertEqual(1,2)
+
+    def test_token_query(self):
+        query = '''
+        SELECT 
+            T.token,
+            (SELECT Ts.token from "Token" Ts WHERE Ts.tokenid = TL.target),
+            TL.index,
+            TL.distance
+        FROM 
+        "Token" T INNER JOIN "TokenLinks" TL
+            ON
+        T.tokenid = TL.source
+            WHERE T.token =:token AND TL.distance < 25
+            AND TL.distance >-4 AND TL.dateid = :id
+        ORDER BY (TL.index, TL.distance)
+        LIMIT 10000;'''
+
+        cursor = self.session.execute(text(query), {'token':'Portland', 'id':8})
+        rows = cursor.fetchall()
+        self.assertGreater(len(rows), 100)
 
