@@ -21,17 +21,18 @@ def root():
 def search(id, token):
     query = '''
     SELECT 
-        T.token,
-        (SELECT Ts.token from "Token" Ts WHERE Ts.tokenid = TL.target),
-        TL.index,
-        TL.distance
-    FROM 
-    "Token" T INNER JOIN "TokenLinks" TL
-        ON
-    T.tokenid = TL.source
-        WHERE T.token =:token AND TL.distance < 25
-        AND TL.distance >-4 AND TL.dateid = :id
-    ORDER BY (TL.index, TL.distance)
+        T.token, 
+        count(*) as C
+
+    FROM "TokenLinks" TL JOIN "Token" T
+    ON T.tokenid = TL.target
+
+    WHERE TL.source = 
+    (SELECT tokenid FROM "Token" T WHERE T.token = :token)
+    AND TL.distance > -4 AND TL.distance < 28 and T.dateid=:id
+
+    GROUP BY T.token HAVING count(*) > 2
+    ORDER BY C DESC
     LIMIT 10000;'''
 
     cursor = session.execute(query, {'token': token, 'id': id})
