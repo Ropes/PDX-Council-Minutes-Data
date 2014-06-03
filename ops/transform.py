@@ -27,6 +27,7 @@ def remove_punctuation(text, punct=',.?!"\''):
         raise ValueError, 'Removing punctuation requires type to be str or unicode'
 
 def stop_words(text):
+    '''Index positions will be lost in string returned when it is reparsed'''
     return ' '.join([ w for w in text.split() if w.lower() not in stop ])
 
 def stop_word_placeheld(text, placeholder=''):
@@ -43,13 +44,13 @@ def token_index(text, split_char=' '):
         
 def freq_dist_count(text):
     fdist = FreqDist(text) 
-    return [ (v, k) for k,v in fdist.iteritems() ]
+    return [ (v, k) for k,v in fdist.items() ]
 
 def freq_dist_dict(text):
     fdist = FreqDist(text) 
-    return { k:v for k,v in fdist.iteritems() }
+    return { k:v for k,v in fdist.items() }
 
-
+#Stemming functionality
 def stem_word(text):
     return stemmer.stem(text) 
 

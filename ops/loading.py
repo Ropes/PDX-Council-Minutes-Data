@@ -19,9 +19,6 @@ def create_link(source, target, index, distance, date=None):
         d.update({'date': date})
     return d
 
-def create_node(token, count):
-    return {'token': token, 'count': count}
-
 def find_indexes(index, token_list, dist):
     '''Finds list of indexes from the token_list which spread out the 
     defined distance from the index both forward and behind.
@@ -50,25 +47,6 @@ def link_op(token_list, distance=10,):
             links.extend([ create_link(t, token_list[ti], i, ti-i)  for ti in token_indexes if token_list[ti] != '' ]) 
     return links
 
-class TokenNode(object):
-    token = ''
-    date = ''
-    count = 0
-    indexes = []
-    pass
-
-class TokenLink(object):
-    source = ''
-    date = ''
-    target = ''
-    distance = 0
-    
-
-def create_nodes(text):
-    nodes = {}
-    freq_dist = freq_dist_dict(text)
-    return freq_dist
-        
 def token_link_text(text, spread=10):
     '''Combine token frequency and token links together into a single JSON
     format.'''
@@ -80,7 +58,7 @@ def token_link_text(text, spread=10):
 def create_tokens(text):
     text = remove_punctuation(text)
     text = stop_word_placeheld(text)
-    return create_nodes(text)
+    return freq_dist_dict(text)
         
 def load_tokens_to_db(session, tokens, meeting_date):
     '''Create list of tokens from processed text and meeting date
@@ -111,11 +89,20 @@ def load_token_links_to_db(session, links, meeting_date):
     links: List of link dicts containing: distance, index, source,and target
     Return: Nothing
     '''
+    token_cache = {}
     for l in links:
-        source = session.query(Token)\
+        if l['source'] in token_cache: 
+            source = token_cache[l['source']]
+        else:
+            source = session.query(Token)\
                 .filter(Token.token==l['source']).all()[0]
-        target = session.query(Token)\
+            token_cache[l['source']] = source
+        if l['target'] in token_cache:
+            target = token_cache[l['target']]
+        else:
+            target = session.query(Token)\
                 .filter(Token.token==l['target']).all()[0]
+            token_cache[l['target']] = target
 
         tl = Tokenlink(distance=l['distance'], index=l['index'])
         tl.Token = source
