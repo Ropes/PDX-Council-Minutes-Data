@@ -27,7 +27,7 @@ token_query2 = '''
 
     WHERE TL.source = 
     (SELECT tokenid FROM "Token" T WHERE T.token = :token)
-    AND TL.distance > -4 AND TL.distance < 28
+    AND TL.distance > -8 AND TL.distance < 28
     and T.dateid=:id
 
     --GROUP BY T.token, TL.distance HAVING count(*) > 2

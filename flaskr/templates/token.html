@@ -1,17 +1,41 @@
 {% extends "layout.html" %}
 
 {% block body %}
+{% set tokens_indexed = dict() %}
 <h2>{{ token }}</h2>
 <h4>{{ id }}</h4>
 
-<table width=100%>
+<table width=100%><tbody>
     {% for r in rows %}
-    <tr>
-    <td align="left">{{ r[0] }}</td>
-    <td align="center">{{ r[1] }}</td>
-    <td align="right">{{ r[2] }}</td>
-    </tr>
+        {% if r[2] <= -1 %}
+            {% if tokens_indexed.items()[0] and tokens_indexed.items()[0][0] != r[1] %}
+            <tr><td>------------------------------------------------------</td></tr>
+            {% endif %}
+            {% set tokens_indexed = {r[1]: False} %}
+            <tr align="left">
+                <td align="left">{{ r[0] }}</td>
+                <td align="center">{{ r[1] }}</td>
+                <td align="right">{{ r[2] }}</td>
+            </tr>
+        {% elif r[2] > 1 %}
+
+            {% if not tokens_indexed[r[1]] %}
+                {% set tokens_indexed = {r[1]:True} %}
+                <tr align="center">
+                    <td align="center">
+                        <h2>{{ token }}</h2>
+                    </td>
+                </tr>
+            {% endif %}
+
+            <tr align="right">
+                <td align="left">{{ r[0] }}</td>
+                <td align="center">{{ r[1] }}</td>
+                <td align="right">{{ r[2] }}</td>
+            </tr>
+        {% endif %}
+
     {% endfor %}
-</table>
+</tbody></table>
 
 {% endblock %}
