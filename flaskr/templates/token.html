@@ -3,10 +3,15 @@
 {% block body %}
 <h2>{{ token }}</h2>
 <h4>{{ id }}</h4>
-<ul>
+
+<table width=100%>
     {% for r in rows %}
-    <li>{{ r }}</li>
+    <tr>
+    <td align="left">{{ r[0] }}</td>
+    <td align="center">{{ r[1] }}</td>
+    <td align="right">{{ r[2] }}</td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 
 {% endblock %}
