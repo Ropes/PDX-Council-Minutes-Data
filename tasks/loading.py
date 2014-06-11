@@ -4,29 +4,58 @@ import ConfigParser
 from os import getenv
 
 import luigi
-from tasks.transform import StopListText
-from orm.transform import process_text
+from tasks.transform import StopListText, CreateTokens, CreateTokenLinks
+from ops.transform import process_text
+from orm.tables import Meetingdate, Token, Tokenlink
+from ops.loading import load_token_links_to_db
 
 from . import auth
 
-class LoadText(luigi.Task):
+class InsertTokens(luigi.Task):
     date = luigi.Parameter()
-    
+
     def requires(self):
-        return StopListText(self.date)
+        return CreateTokens(self.date)
 
     def output(self):
         pass
 
     def run(self):
+        engine = connect_engine()
+        session = make_session(engine)
+
+        md = session.query(Meetingdate).filter(Meetingdate.date==self.date).all()[0]
+        
         with self.input().open('r') as I:
-            raw_text = I.read()
+            tokens = pickle.load(I)
 
-            tokens_counted = create_tokens(raw_text)
+            for k,v in tokens.items():
+                if k:
+                    #TODO: import ORM defs
+                    t = Token(token=k, count=v)
+                    t.MeetingDate = md
+                    session.add(t)
 
-            
-            #TODO: Generate token data
+            session.commit()
+            session.close()
 
-            #TODO: Create token_links
+class InsertTokenLinks(luigi.Task):
+    date = luigi.Parameter()
 
-            
+    def requires(self):
+        return CreateTokenLinks(self.date)
+
+    def output(self):
+        pass
+
+    def run(self):
+        engine = connect_engine()
+        session = make_session(engine)
+
+        md = session.query(Meetingdate).filter(Meetingdate.date==self.date).all()[0]
+        
+        with self.input().open('r') as I:
+            links = pickle.load(I)
+            load_token_links_to_db(session, links, md)
+
+
