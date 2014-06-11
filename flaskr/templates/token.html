@@ -2,8 +2,11 @@
 
 {% block body %}
 {% set tokens_indexed = dict() %}
-<h2>{{ token }}</h2>
-<h4>{{ id }}</h4>
+
+<div class="headerpage">
+<h2>Token Queried: {{ token }}</h2>
+<h2>Doc Number: {{ id }}</h2>
+</div>
 
 <table width=100%><tbody>
     {% for r in rows %}
