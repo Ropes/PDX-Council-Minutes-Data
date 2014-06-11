@@ -1,5 +1,6 @@
 from __future__ import print_function, unicode_literals
 
+import pickle
 import luigi
 from luigi import Task, Parameter, LocalTarget
 
@@ -38,6 +39,48 @@ class StopListText(luigi.Task):
             text = stop_words(I.read())
             with self.output().open('w') as O:
                 O.write(text.encode('utf-8'))
+
+
+class CreateTokens(luigi.Task):
+    date = luigi.Parameter()
+    
+    def requires(self):
+        return StopListText(self.date)
+
+    def output(self):
+        return LocalTarget('{}/tokens.pkl'.format(\
+                            extract_path(self.date)))
+
+    def run(self):
+        with self.input().open('r') as I:
+            raw_text = I.read()
+
+            tokens_counted = create_tokens(raw_text)
+            with self.output().open('w') as O:
+                pickle.dump(tokens_counted, O)
+                
+
+class CreateTokenLinks(luigi.Task):
+    date = luigi.Parameter()
+
+    def requires(self):
+        return StopListText(self.date)
+
+    def output(self):
+        return LocalTarget('{}/token_links.pkl'.format(\
+                        extract_path(self.date)))
+
+    def run(self):
+        with self.input().open('r') as I:
+            raw_text = I.read()
+
+            text = remove_punctuation(raw_text)
+            text = stop_word_placeheld(text)
+
+            links = link_op(text, distance=25)
+            with self.output().open('w') as O:
+                pickle.dump(links, O)
+
 
 class YearList(luigi.Task):
     date = Parameter(default=None)
