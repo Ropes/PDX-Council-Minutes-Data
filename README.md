@@ -1,6 +1,7 @@
-Luigi-ETL-Demo
+PDX Council Minutes Data
 ==============
 
+Attempting to extract and clean up the PDX Council Minutes data and make it searchable.  Currently the data is formatted in nasty PDFs which makes parsing more complex than desirable.
 Demonstration project for using Luigi process framework to run ETL jobs.
 
 ##Overview
@@ -33,6 +34,8 @@ Sanitize example, clean/process/stem/nlp extracted data to record.
 ###Analysis
 ####Possibilities 
  * Group content of text analysis by speaker's name
+     * Speaker->speech might be possible by splitting: 
+     \w<SpeakerName>: <sentence> <words> <...>.  
  * Word content cloud
 
 ##Setup
