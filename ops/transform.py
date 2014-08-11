@@ -10,6 +10,7 @@ from nltk.stem.snowball import SnowballStemmer
 
 stemmer = SnowballStemmer("english")
 stop = stopwords.words('english')
+stop_set = { unicode(w) for w in stop }
 
 def pdf_text(pdf_file):
     pdf = PdfFileReader(pdf_file)
@@ -22,16 +23,16 @@ def remove_punctuation(text, punct=',.?!"\''):
         remove = {ord(c): None for c in punct}
         return text.translate(remove)
     elif type(text) is str:
-        return text.translate(None, str(punct))
+        return unicode(text.translate(None, str(punct)))
     else:
         raise ValueError, 'Removing punctuation requires type to be str or unicode'
 
 def stop_words(text):
     '''Index positions will be lost in string returned when it is reparsed'''
-    return ' '.join([ w for w in text.split() if w.lower() not in stop ])
+    return u' '.join([ w for w in text.split() if w.lower() not in stop ])
 
-def stop_word_placeheld(text, placeholder=''):
-    return [ w if w.lower() not in stop else placeholder for w in text.split() ]
+def stop_word_placeheld(text, placeholder=u''):
+    return [ w if w.lower() not in stop_set else placeholder for w in text.split() ]
 
 def token_index(text, split_char=' '):
     '''Create dict of tokens keyed to their list of numeric index locations

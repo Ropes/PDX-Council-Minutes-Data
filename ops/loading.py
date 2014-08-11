@@ -47,13 +47,13 @@ def link_op(token_list, distance=10,):
             links.extend([ create_link(t, token_list[ti], i, ti-i)  for ti in token_indexes if token_list[ti] != '' ]) 
     return links
 
-def token_link_text(text, spread=10):
+def token_link_text(text, distance=10):
     '''Combine token frequency and token links together into a single JSON
     format.'''
     text = remove_punctuation(text)
     token_list = stop_word_placeheld(text)
 
-    links = link_op(token_list, distance=spread)
+    return link_op(token_list, distance=distance)
 
 def create_tokens(text):
     text = remove_punctuation(text)
