@@ -1,8 +1,9 @@
 PDX Council Minutes Data
 ==============
 
-Attempting to extract and clean up the PDX Council Minutes data and make it searchable.  Currently the data is formatted in nasty PDFs which makes parsing more complex than desirable.
-Demonstration project for using Luigi process framework to run ETL jobs.
+Attempting to extract and clean up the PDX Council Minutes data and make it searchable.  Currently the data is formatted in nasty PDFs which makes parsing more complex than desirable.  
+
+The project is also a demonstration for using Luigi process framework to run ETL jobs of web data.  
 
 ##Overview
 ###Extract
