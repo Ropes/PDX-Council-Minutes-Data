@@ -4,7 +4,8 @@ import pickle
 import luigi
 from luigi import Task, Parameter, LocalTarget
 
-from ops.transform import pdf_text, stop_words
+from ops.loading import create_tokens, token_link_text
+from ops.transform import pdf_text, stop_word_placeheld
 from ops.extract import extract_path
 from tasks.extract import ExtractMinutes
 
@@ -36,9 +37,11 @@ class StopListText(luigi.Task):
 
     def run(self):
         with self.input().open('r') as I:
-            text = stop_words(I.read())
+            src = I.read()
+            print('Src type: {}'.format(type(src)))
+            tokens = stop_word_placeheld(src)
             with self.output().open('w') as O:
-                O.write(text.encode('utf-8'))
+                pickle.dump(tokens, O)
 
 
 class CreateTokens(luigi.Task):
@@ -73,11 +76,7 @@ class CreateTokenLinks(luigi.Task):
     def run(self):
         with self.input().open('r') as I:
             raw_text = I.read()
-
-            text = remove_punctuation(raw_text)
-            text = stop_word_placeheld(text)
-
-            links = link_op(text, distance=25)
+            links = token_link_text(raw_text, distance=25)
             with self.output().open('w') as O:
                 pickle.dump(links, O)
 

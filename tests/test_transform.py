@@ -5,7 +5,7 @@ import os
 from sys import stderr
 import unittest
 
-from ops.transform import (stop_words, freq_dist_count, stem_text,\
+from ops.transform import (stop, stop_set, stop_words, freq_dist_count, stem_text,\
                 freq_dist_dict, remove_punctuation, token_index, \
                 stop_word_placeheld)
 
@@ -18,6 +18,7 @@ class TestTransformOps(unittest.TestCase):
     good_str = 'adams wat badcat xcat $9000'
     punct = ',:.?!"\''
     small_text = "The quick brown fox jumps over the lazy dog which looks like a fox so we can quick jump to get repeated words."
+    small_unicode = u""
 
     def test_stop_words(self):
         with open('{}{}'.format(base_resources, 'lebowskiIpsum'), 'r')\
@@ -141,3 +142,12 @@ class TestTransformOps(unittest.TestCase):
             
             'w') as out_file:
                 out_file.write(pformat(ti))
+
+    def test_stop_list(self):
+        self.assertEqual(type(stop), list)
+        self.assertEqual(type(stop_set), set)
+
+        word = list(stop_set)[0]
+        self.assertEqual(type(word), unicode)
+
+
