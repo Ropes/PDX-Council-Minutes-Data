@@ -21,7 +21,13 @@ Sanitize example, clean/process/stem/nlp extracted data to record.
     * Use PyPDF2 to extract text.
     * Decide if more than just text conversion is necessary.
  * Clean data
-    * Stopword Blacklisting
+    * Breaking out Heading information from the PDF-text
+        * Contains meeting information but mostly unhelpful text and characters
+    * Analyzing meeting minute data
+        * Break apart statements by participant
+            * eg: "Adams: I'm a pretty sweet mayor" "Fritz: I concur" "GAVEL"
+            * When indexing in ES, set participant and statement as fields
+    * Stopword Blacklisting(Degrades context, bad and will be removed)
         * Requires NLTK download of 'all-corpora'
         * In text list, keep indexes to all words including stopped for backtracing location of words to raw document.
     * Stemming for language analysis?
@@ -29,7 +35,10 @@ Sanitize example, clean/process/stem/nlp extracted data to record.
 ###Loading/Save
  * Index data to Elasticsearch 
     * Have alternative for simple filesystem storage
- * TODO: Write data to a graph/rdf data store for quick anlysis loading to D3
+
+####Visualization
+ * TODO: Write data to a graph/rdf data store for quick analysis loading to D3
+ * Index data into Elasticsearch
  * Feed interesting data to D3.
 
 ###Analysis
@@ -51,5 +60,6 @@ TODO: Learn D3 for setup :/
 
 TODO: Running scheduler  
 TODO: Running Elasticsearch docker image  
+TODO: Dockerize visualization server
 TODO: Kickoff end task  
 
