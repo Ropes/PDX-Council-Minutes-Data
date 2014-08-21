@@ -70,8 +70,27 @@ def split_minutes_content(text):
 
 def split_statements_from_discussion(text):
     '''Break conversations by speaker from the discussion text'''
-    return re.findall('([a-zA-Z -]+):(.*?)\s+[a-zA-Z-]+:', text, re.DOTALL)
+    #return re.findall('([a-zA-Z -]+):(.*?)\s+[a-zA-Z-]+:', text, re.DOTALL)
+    return re.findall('([a-zA-Z -]+):(.*?)\s\s\s', text, re.DOTALL)
 
+def split_statements_via_colon(text):
+    '''Proceduraling split apart the document by colons and attempt to link speaker to their statement.
+
+    eg:  Any questions from council?   Fritz: The previous ordinance number 11 had an emergency clause in it and I don't see one in this 
+ordinance.    Sandino
+    '''
+    colon_splits = text.split(":")
+    statements = []
+    prev_speaker = ""
+
+    for cs in colon_splits:
+        print(cs)
+        found = re.findall("^(.*?)\s?(\w+)$", cs)
+        print(found)
+        if found and len(found[0]) == 2:
+            statements.append((prev_speaker, found[0][0]))
+            prev_speaker = found[0][1]
+    return statements
 
 
 
