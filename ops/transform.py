@@ -1,6 +1,7 @@
 from __future__ import print_function, unicode_literals
 
 import string
+import re
 from collections import defaultdict
 
 from PyPDF2 import PdfFileReader
@@ -66,4 +67,11 @@ def process_text(text):
 def split_minutes_content(text):
     '''Split apart the minutes file header info from the conversation'''
     return text.split('\n \n \n')
+
+def split_statements_from_discussion(text):
+    '''Break conversations by speaker from the discussion text'''
+    return re.findall('([a-zA-Z -]+): (.*?)\s*[a-zA-Z -]+?:', text, re.DOTALL)
+
+
+
 
