@@ -7,7 +7,7 @@ import unittest
 
 from ops.transform import (stop, stop_set, stop_words, freq_dist_count, stem_text,\
                 freq_dist_dict, remove_punctuation, token_index, \
-                stop_word_placeheld)
+                stop_word_placeheld, split_minutes_content)
 
 base_resources = '{}/tests/resources/'.format(os.getcwd())
 target_out = '{}/tests/target/'.format(os.getcwd())
@@ -149,5 +149,14 @@ class TestTransformOps(unittest.TestCase):
 
         word = list(stop_set)[0]
         self.assertEqual(type(word), unicode)
+
+    def test_split_content(self):
+        with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), 'r')\
+        as f:
+            text = f.read().decode('utf-8')
+            text = ''.join(text)
+            split_doc = split_minutes_content(text)
+            self.assertEqual(len(split_doc), 2)
+            #print(split_doc[0], file=stderr)
 
 

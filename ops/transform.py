@@ -44,12 +44,12 @@ def token_index(text, split_char=' '):
     return dict(index)
         
 def freq_dist_count(text):
-    fdist = FreqDist(text) 
-    return [ (v, k) for k,v in fdist.items() ]
+    fdist = FreqDist(text)
+    return [(v, k) for k, v in fdist.items()]
 
 def freq_dist_dict(text):
     fdist = FreqDist(text) 
-    return { k:v for k,v in fdist.items() }
+    return {k:v for k, v in fdist.items()}
 
 #Stemming functionality
 def stem_word(text):
@@ -62,4 +62,8 @@ def process_text(text):
     '''Returns list of cleaned tokens'''
     text = remove_punctuation(text)
     return stop_word_placeheld(text)
+
+def split_minutes_content(text):
+    '''Split apart the minutes file header info from the conversation'''
+    return text.split('\n \n \n')
 
