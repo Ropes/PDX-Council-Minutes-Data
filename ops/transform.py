@@ -84,17 +84,19 @@ ordinance.    Sandino
     prev_speaker = ""
 
     for cs in colon_splits:
-        print(cs)
-        found = re.findall("^(.*?)\s?(\w+)$", cs)
-        orphan_statement = re.findall("^(.*)", cs)
-        print(found)
-        print(orphan_statement)
+        found = re.findall("^(.*?)\s?([a-zA-Z-_]+)$", cs, re.DOTALL)
+        orphan_statement = re.findall("^(.*)", cs, re.DOTALL)
+        print("\nText: '{}'\nStatement:Speaker: {}".format(cs, found, orphan_statement))
         if found and len(found[0]) == 2:
-            statements.append((prev_speaker, found[0][0]))
-            prev_speaker = found[0][1]
+            statements.append((prev_speaker, found[0][0].strip()))
+            new_speaker = found[0][1].strip()
+            if new_speaker:
+                prev_speaker = new_speaker
         elif orphan_statement and len(orphan_statement) == 1:
-            print("Missing found! {}".format(orphan_statement))
-            statements.append((prev_speaker, orphan_statement[0]))
+            #print(orphan_statement)
+            if not statements:
+                print(">>>>Missing found! {}".format(orphan_statement))
+            statements.append((prev_speaker, orphan_statement[0].strip()))
     return statements
 
 
