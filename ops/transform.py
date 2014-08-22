@@ -73,6 +73,28 @@ def split_statements_from_discussion(text):
     #return re.findall('([a-zA-Z -]+):(.*?)\s+[a-zA-Z-]+:', text, re.DOTALL)
     return re.findall('([a-zA-Z -]+):(.*?)\s\s\s', text, re.DOTALL)
 
+def gen_statement(speaker, stmt):
+    return [speaker, stmt]
+
+class Statement(object):
+    def __init__(self, speaker, statement):
+        self.speaker = speaker
+        self.statement = statement
+
+    def __str__(self):
+        return "{}->'{}'".format(self.speaker, self.statement)
+    def __unicode__(self):
+        return "{}->'{}'".format(self.speaker, self.statement)
+
+    def append_statement(self, stmt):
+        '''Append more text to the current statement'''
+        self.statement += stmt
+
+    def encode_utf8(self):
+        self.speaker = self.speaker.encode("utf8")
+        self.statement = self.statement.encode("utf8")
+
+
 def split_statements_via_colon(text):
     '''Proceduraling split apart the document by colons and attempt to link speaker to their statement.
 
@@ -85,18 +107,29 @@ ordinance.    Sandino
 
     for cs in colon_splits:
         found = re.findall("^(.*?)\s?([a-zA-Z-_]+)$", cs, re.DOTALL)
-        orphan_statement = re.findall("^(.*)", cs, re.DOTALL)
+
+        orphan_statement = None
+        try:
+            orphan_statement = re.findall("^(.*)", cs, re.DOTALL)[0].strip()
+        except Exception as err:
+            print("Error parsing orphan statement: {}".format(err))
+
         print("\nText: '{}'\nStatement:Speaker: {}".format(cs, found, orphan_statement))
         if found and len(found[0]) == 2:
-            statements.append((prev_speaker, found[0][0].strip()))
+            stmt = gen_statement(prev_speaker,found[0][0].strip()) 
+            #stmt = Statement(prev_speaker, found[0][0].strip())
+            #statements.append([prev_speaker, found[0][0].strip()])
+            print(stmt)
+            statements.append(stmt)
             new_speaker = found[0][1].strip()
             if new_speaker:
                 prev_speaker = new_speaker
-        elif orphan_statement and len(orphan_statement) == 1:
-            #print(orphan_statement)
-            if not statements:
-                print(">>>>Missing found! {}".format(orphan_statement))
-            statements.append((prev_speaker, orphan_statement[0].strip()))
+        elif orphan_statement:
+            print(">>>>Missing found! {}".format(orphan_statement))
+            #statements.append((prev_speaker, orphan_statement[0].strip()))
+
+            if len(statements) > 1:
+                statements[len(statements)-1][1] += orphan_statement
     return statements
 
 
