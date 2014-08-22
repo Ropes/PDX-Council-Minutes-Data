@@ -215,8 +215,8 @@ meeting and the public is welcomed to weigh in on these throughout the budget pr
 
         speakers = set()
         for c in convos:
-            speakers.add(c[0].strip())
-            print('{}->"{}"'.format(c[0].strip(), c[1].strip()))
+            speakers.add(c.speaker)
+            print(c)
         
         self.assertTrue("Saltzman" in speakers)
         self.assertTrue("Fritz" in speakers)

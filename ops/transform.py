@@ -88,7 +88,7 @@ class Statement(object):
 
     def append_statement(self, stmt):
         '''Append more text to the current statement'''
-        self.statement += stmt
+        self.statement += " " + stmt
 
     def encode_utf8(self):
         self.speaker = self.speaker.encode("utf8")
@@ -114,13 +114,12 @@ ordinance.    Sandino
         except Exception as err:
             print("Error parsing orphan statement: {}".format(err))
 
-        print("\nText: '{}'\nStatement:Speaker: {}".format(cs, found, orphan_statement))
+        print("\nText: '{}'\n<-->Statement:Speaker: {}".format(cs, found, orphan_statement))
         if found and len(found[0]) == 2:
-            stmt = gen_statement(prev_speaker,found[0][0].strip()) 
-            #stmt = Statement(prev_speaker, found[0][0].strip())
-            #statements.append([prev_speaker, found[0][0].strip()])
-            print(stmt)
+            stmt = Statement(prev_speaker, found[0][0].strip())
             statements.append(stmt)
+            print(stmt)
+
             new_speaker = found[0][1].strip()
             if new_speaker:
                 prev_speaker = new_speaker
@@ -129,7 +128,8 @@ ordinance.    Sandino
             #statements.append((prev_speaker, orphan_statement[0].strip()))
 
             if len(statements) > 1:
-                statements[len(statements)-1][1] += orphan_statement
+                statements[len(statements)-1].append_statement(orphan_statement)
+
     return statements
 
 
