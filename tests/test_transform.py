@@ -1,5 +1,6 @@
 from __future__ import unicode_literals, print_function
 import datetime
+import codecs
 from pprint import pformat
 import os
 from sys import stderr
@@ -161,7 +162,7 @@ class TestTransformOps(unittest.TestCase):
             #print(split_doc[0], file=stderr)
 
     def test_split_discussion(self):
-        with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), 'r')\
+        with open('{}{}'.format(base_resources, '2011-1-19raw.txt'), mode='r')\
         as f:
             text = f.read().decode('utf8')
             text = ''.join(text)
@@ -174,7 +175,7 @@ class TestTransformOps(unittest.TestCase):
 
             #print("Statements found: {}".format(convos[:5]))
             for i in range(0, 50):
-                print('{}->"{}"'.format(convos[i][0].strip(), convos[i][1]))
+                print(unicode(convos[i]))
             self.assertGreater(len(convos), 100)
             self.assertEqual(1, 2)
 
