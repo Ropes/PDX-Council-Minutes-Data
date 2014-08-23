@@ -42,6 +42,10 @@ class TestLuigi(unittest.TestCase):
         task = TransformPDF(self.date)
         task_kick(task)
 
+    def test_split_header(self):
+        task = SplitHeader(self.date)
+        task_kick(task)
+
     def test_split_body(self):
         task = SplitBody(self.date)
         task_kick(task)

@@ -42,7 +42,7 @@ class SplitHeader(luigi.Task):
 
             split_doc = split_minutes_content(text)
             with self.output().open("w") as O:
-                O.write(split_doc[0])
+                O.write(split_doc[0].encode("utf8"))
             
 class SplitBody(luigi.Task):
     date = Parameter(default=None)
