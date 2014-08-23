@@ -132,10 +132,12 @@ ordinance.    Sandino
             i += 1
         elif orphan_statement:
             print(">>>>Missing found! {}".format(orphan_statement))
-            #statements.append((prev_speaker, orphan_statement[0].strip()))
 
             if len(statements) > 1:
                 statements[len(statements)-1].append_statement(orphan_statement)
+            else:
+                stmt = Statement("header", orphan_statement, index=i)
+                statements.append(stmt)
 
     return statements
 
