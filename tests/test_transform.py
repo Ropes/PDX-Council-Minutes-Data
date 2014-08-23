@@ -1,4 +1,5 @@
 from __future__ import unicode_literals, print_function
+import re
 import datetime
 import codecs
 from pprint import pformat
@@ -166,12 +167,17 @@ class TestTransformOps(unittest.TestCase):
         as f:
             text = f.read().decode('utf8')
             text = ''.join(text)
+
             split_doc = split_minutes_content(text)
             self.assertEqual(len(split_doc), 2)
 
             print(split_doc[1][:3000])
             #convos = split_statements_from_discussion(split_doc[1])
-            convos = split_statements_via_colon(split_doc[1])
+            trans_table = dict.fromkeys(map(ord, u"\n"), None)
+            print(trans_table)
+            sp_text = split_doc[1].translate(trans_table)
+            print(sp_text)
+            convos = split_statements_via_colon(sp_text)
 
             #print("Statements found: {}".format(convos[:5]))
             for i in range(0, 50):
