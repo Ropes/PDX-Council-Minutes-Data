@@ -5,7 +5,7 @@ import luigi
 from luigi import Task, Parameter, LocalTarget
 
 from ops.loading import create_tokens, token_link_text
-from ops.transform import pdf_text, stop_word_placeheld
+from ops.transform import pdf_text, split_minutes_content, stop_word_placeheld
 from ops.extract import extract_path
 from tasks.extract import ExtractMinutes
 
@@ -24,6 +24,60 @@ class TransformPDF(Task):
             text = pdf_text(I)
             with self.output().open('w') as O:
                 O.write(text.encode('utf-8'))
+
+class SplitHeader(luigi.Task):
+    date = Parameter(default=None)
+
+    def requires(self):
+        return TransformPDF(self.date)
+
+    def output(self):
+        return LocalTarget("{}/header.txt".format(extract_path(self.date)))
+
+    def run(self):
+        with self.input().open("r") as I:
+            text = I.read()
+            text = text.decode('utf8')
+            text = ''.join(text)
+
+            split_doc = split_minutes_content(text)
+            with self.output().open("w") as O:
+                O.write(split_doc[0])
+            
+class SplitBody(luigi.Task):
+    date = Parameter(default=None)
+
+    def requires(self):
+        return TransformPDF(self.date)
+
+    def output(self):
+        return LocalTarget("{}/body.txt".format(extract_path(self.date)))
+
+    def run(self):
+        with self.input().open("r") as I:
+            text = I.read()
+            text = text.decode('utf8')
+            text = ''.join(text)
+
+
+            split_doc = split_minutes_content(text)
+            trans_table = dict.fromkeys(map(ord, u"\n"), None)
+            sp_text = split_doc[1].translate(trans_table)
+
+            with self.output().open("w") as O:
+                O.write(sp_text.encode('utf8'))
+
+class ParseStatements(luigi.Task):
+    date = Parameter(default=None)
+
+    def requires(self):
+        pass
+
+    def output(self):
+        pass
+
+    def run(self):
+        pass
 
 class StopListText(luigi.Task):
     date = Parameter(default=None)
