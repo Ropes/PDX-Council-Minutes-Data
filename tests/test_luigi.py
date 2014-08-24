@@ -8,7 +8,8 @@ from luigi import RemoteScheduler
 
 from tasks.extract import (ExtractMinutes, ExtractMinuteYearPage,\
                     ExtractMinuteURLs, )
-from tasks.transform import (TransformPDF, CreateTokens, CreateTokenLinks)
+from tasks.transform import (TransformPDF, CreateTokens, CreateTokenLinks,
+        SplitBody, SplitHeader, ParseStatements)
 from tasks.common import task_kick, sch
 
 class TestLuigi(unittest.TestCase):
@@ -41,12 +42,17 @@ class TestLuigi(unittest.TestCase):
         task = TransformPDF(self.date)
         task_kick(task)
 
-    def test_trans_create_token(self):
-        task = CreateTokens(self.date)
+    def test_split_header(self):
+        task = SplitHeader(self.date)
         task_kick(task)
 
-    def test_trans_create_token_links(self):
-        task = CreateTokenLinks(self.date)
+    def test_split_body(self):
+        task = SplitBody(self.date)
         task_kick(task)
+
+    def test_parse_stmts(self):
+        task = ParseStatements(self.date)
+        task_kick(task)
+
 
 
