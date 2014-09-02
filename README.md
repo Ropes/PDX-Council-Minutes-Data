@@ -49,17 +49,26 @@ Sanitize example, clean/process/stem/nlp extracted data to record.
  * Word content cloud
 
 ##Setup
+Create a python [virtualenv](http://virtualenv.readthedocs.org/en/latest/) and install the requirements file.
 > pip install -r requirements.txt
 
-TODO: Luigi config file  
-TODO: luigid daemon  
-TODO: Elasticsearch from docker image  
-TODO: Learn D3 for setup :/  
+A config file for luigi Luigi config file stored in the users home config directory. "luigi" is the key to user and password.  Example:
+> [luigi]
+user=user
+password=password
+host=127.0.0.1
+database=pdxdata
+
+Stored in:
+> ~/.config/postgres.ini
+
 
 ##Running
+The luigi daemon needs to be running in order to run the ETL pipeline:
+> luigid #Leave running while running processes
 
-TODO: Running scheduler  
-TODO: Running Elasticsearch docker image  
-TODO: Dockerize visualization server
-TODO: Kickoff end task  
+Currently using tests to kick off jobs, once things are finished end to end it will be via the command line.
+
+TODO: Running Elasticsearch docker image
+
 
