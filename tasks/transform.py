@@ -94,6 +94,27 @@ class ParseStatements(luigi.Task):
             with self.output().open("w") as O:
                 pickle.dump(convos, O)
             
+class DumpStatements(luigi.Task):
+    '''Open statements pickle and dump to file in comma separated list'''
+    date = Parameter(default=None)
+
+    def requires(self):
+        return ParseStatements(self.date)
+
+    def output(self):
+        return LocalTarget("{}/statements.csv".format(extract_path(self.date)))
+
+    def run(self):
+        with self.input().open("r") as I:
+            data = pickle.load(I)
+
+            #[ stmt.decode_utf8() for stmt in data ]
+            stmt_strs = [ "{}::{}::{}".format(stmt.index, stmt.speaker,\
+                    stmt.statement) for stmt in data]
+            with self.output().open("w") as O:
+                text = u"\n".join(stmt_strs)
+                O.write(text.encode('utf-8'))
+
 
 class StopListText(luigi.Task):
     date = Parameter(default=None)

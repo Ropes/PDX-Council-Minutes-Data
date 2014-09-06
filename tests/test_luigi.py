@@ -9,7 +9,7 @@ from luigi import RemoteScheduler
 from tasks.extract import (ExtractMinutes, ExtractMinuteYearPage,\
                     ExtractMinuteURLs, )
 from tasks.transform import (TransformPDF, CreateTokens, CreateTokenLinks,
-        SplitBody, SplitHeader, ParseStatements)
+        SplitBody, SplitHeader, ParseStatements, DumpStatements)
 from tasks.common import task_kick, sch
 
 class TestLuigi(unittest.TestCase):
@@ -52,6 +52,10 @@ class TestLuigi(unittest.TestCase):
 
     def test_parse_stmts(self):
         task = ParseStatements(self.date)
+        task_kick(task)
+
+    def test_dump_stmts(self):
+        task = DumpStatements(self.date)
         task_kick(task)
 
 
