@@ -2,6 +2,7 @@ package ops
 
 import (
 	"io/ioutil"
+	"strings"
 	"testing"
 
 	"github.com/ropes/PDX-Council-Minutes-Data"
@@ -16,8 +17,21 @@ func TestFindData(t *testing.T) {
 		t.Error(err)
 		panic(err)
 	}
+	text := string(fi)
 
-	if len(fi) < 500 {
-		t.Errorf(string(fi))
+	if len(text) < 500 {
+		t.Errorf(text)
 	}
+
+	lines := strings.Split(text, "\n")
+	test_index := 12
+	if len(lines) < 100 {
+		t.Errorf(lines[test_index])
+	}
+
+	split := strings.Split(lines[test_index], "::")
+	if len(split) != 3 {
+		t.Errorf("%#v\n", split)
+	}
+
 }
