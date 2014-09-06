@@ -35,6 +35,11 @@ Sanitize example, clean/process/stem/nlp extracted data to record.
 ###Loading/Save
  * Index data to Elasticsearch 
     * Have alternative for simple filesystem storage
+ * Statement Data Fields (made searchable via ES)
+    * Speaker
+    * Statement
+    * Date
+    * Statement position in document
 
 ####Visualization
  * TODO: Write data to a graph/rdf data store for quick analysis loading to D3
