@@ -2,6 +2,7 @@ package ops
 
 import (
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/ropes/PDX-Council-Minutes-Data"
@@ -18,6 +19,21 @@ type Statement struct {
 
 //TODO: Find file locations based on date
 //TODO: Read in files
+
+func ParseDoc(text string, c chan []string) {
+	lines := strings.Split(text, "\n")
+	test_index := 12
+	if len(lines) < 100 {
+		panic(lines[test_index])
+	}
+
+	for _, v := range lines {
+		split := strings.Split(v, "::")
+		c <- split
+	}
+	close(c)
+}
+
 //TODO: Load data to ES
 
 func main() {
