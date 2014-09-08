@@ -2,6 +2,7 @@ package ops
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 	"time"
 
@@ -29,9 +30,20 @@ func ParseDoc(text string, c chan []string) {
 
 	for _, v := range lines {
 		split := strings.Split(v, "::")
+		//fmt.Printf("%#v\n", split)
 		c <- split
 	}
 	close(c)
+}
+
+func ParseTripleStmt(s []string, t time.Time) Statement {
+	index, err := strconv.Atoi(s[0])
+	if err != nil {
+		panic(err)
+	}
+	stmt := &Statement{s[1], s[2], index, t}
+
+	return *stmt
 }
 
 //TODO: Load data to ES
