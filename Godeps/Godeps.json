@@ -1,0 +1,8 @@
+{
+	"ImportPath": "github.com/ropes/PDX-Council-Minutes-Data",
+	"GoVersion": "devel +f749e3111252 Fri Jul 18 12:41:20 2014 -0700",
+	"Packages": [
+		"github.com/ropes/PDX-Council-Minutes-Data"
+	],
+	"Deps": []
+}
