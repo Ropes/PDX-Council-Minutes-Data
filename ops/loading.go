@@ -20,7 +20,7 @@ type Statement struct {
 //TODO: Read in files
 //TODO: Load data to ES
 
-func main() {
+func mmain() {
 	d := pathfinder.EasyDate(2011, 1, 19)
 	dir := pathfinder.MinutesDataDir(d)
 

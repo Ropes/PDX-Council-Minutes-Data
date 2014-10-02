@@ -40,6 +40,9 @@ Sanitize example, clean/process/stem/nlp extracted data to record.
     * Statement
     * Date
     * Statement position in document
+ * Elasticsearch indexes and mappings
+    * Index: pdxcouncil
+    * Mapping mirrors Statement data defined above
 
 ####Visualization
  * TODO: Write data to a graph/rdf data store for quick analysis loading to D3
