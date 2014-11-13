@@ -1,19 +1,17 @@
-package ops
+package pdxcmd
 
 import (
 	"fmt"
 	"io/ioutil"
 	"strings"
 	"testing"
-
-	"github.com/ropes/PDX-Council-Minutes-Data"
 )
 
 func datafile() string {
-	d := pathfinder.EasyDate(2011, 1, 19)
-	dir := pathfinder.MinutesDataDir(d)
+	d := EasyDate(2011, 1, 19)
+	dir := MinutesDataDir(d)
 
-	fi, err := ioutil.ReadFile("../" + dir + "/statements.csv")
+	fi, err := ioutil.ReadFile(dir + "/statements.csv")
 	if err != nil {
 		panic(err)
 	}
@@ -22,10 +20,10 @@ func datafile() string {
 }
 
 func TestFindData(t *testing.T) {
-	d := pathfinder.EasyDate(2011, 1, 19)
-	dir := pathfinder.MinutesDataDir(d)
+	d := EasyDate(2011, 1, 19)
+	dir := MinutesDataDir(d)
 
-	fi, err := ioutil.ReadFile("../" + dir + "/statements.csv")
+	fi, err := ioutil.ReadFile(dir + "/statements.csv")
 	if err != nil {
 		t.Error(err)
 		panic(err)
@@ -51,7 +49,7 @@ func TestFindData(t *testing.T) {
 
 func TestTextParse(t *testing.T) {
 	text := datafile()
-	d := pathfinder.EasyDate(2011, 1, 19)
+	d := EasyDate(2011, 1, 19)
 
 	c := make(chan []string)
 	go ParseDoc(text, c)
@@ -59,6 +57,6 @@ func TestTextParse(t *testing.T) {
 		stmt := ParseTripleStmt(s, d)
 		fmt.Println(stmt)
 	}
-	t.Errorf("allgood")
+	//t.Errorf("allgood")
 
 }

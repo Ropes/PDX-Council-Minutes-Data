@@ -1,12 +1,10 @@
-package ops
+package pdxcmd
 
 import (
 	"fmt"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/ropes/PDX-Council-Minutes-Data"
 )
 
 //Statement contains fields for speaker and what they said
@@ -49,8 +47,8 @@ func ParseTripleStmt(s []string, t time.Time) Statement {
 //TODO: Load data to ES
 
 func mmain() {
-	d := pathfinder.EasyDate(2011, 1, 19)
-	dir := pathfinder.MinutesDataDir(d)
+	d := EasyDate(2011, 1, 19)
+	dir := MinutesDataDir(d)
 
 	fmt.Println(dir)
 }

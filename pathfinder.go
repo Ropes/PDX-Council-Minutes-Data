@@ -1,4 +1,4 @@
-package pathfinder
+package pdxcmd
 
 import (
 	"path/filepath"
