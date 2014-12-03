@@ -12,8 +12,8 @@ import (
 type Statement struct {
 	Speaker string
 	Text    string
-	index   int
-	date    time.Time
+	Index   int
+	Date    time.Time
 }
 
 //TODO: Find file locations based on date
