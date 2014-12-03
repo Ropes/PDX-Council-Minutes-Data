@@ -82,10 +82,9 @@ func TestESLoad(t *testing.T) {
 	esc := ESConnect("localhost")
 	blkindxr := esc.NewBulkIndexerErrors(10, 60)
 	blkindxr.Start()
-	for i, s := range stmts {
-		//TODO: Insert elasticsearch
-		blkindxr.Index("wat", "user", strconv.Itoa(s.Index), "", &s.Date, s, true)
-		fmt.Printf("%#v %#v\n", i, s)
+	for _, s := range stmts {
+		blkindxr.Index("wat", "stmt", strconv.Itoa(s.Index), "", &s.Date, s, true)
+		//fmt.Printf("%#v %#v\n", i, s)
 	}
 	blkindxr.Stop()
 }
