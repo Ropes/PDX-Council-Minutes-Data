@@ -5,6 +5,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/shutej/elastigo/lib"
 )
 
 //Statement contains fields for speaker and what they said
@@ -44,7 +46,16 @@ func ParseTripleStmt(s []string, t time.Time) Statement {
 	return *stmt
 }
 
-//TODO: Load data to ES
+//Load statement data to ES
+func LoadStatments(stmts *[]Statement, esc *elastigo.Conn, index, user string) error {
+	blkindxr := esc.NewBulkIndexerErrors(10, 60)
+	blkindxr.Start()
+	for _, s := range *stmts {
+		blkindxr.Index(index, user, strconv.Itoa(s.Index), "", &s.Date, s, true)
+	}
+	blkindxr.Stop()
+	return nil
+}
 
 func mmain() {
 	d := EasyDate(2011, 1, 19)

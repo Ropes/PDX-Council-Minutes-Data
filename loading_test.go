@@ -88,3 +88,25 @@ func TestESLoad(t *testing.T) {
 	}
 	blkindxr.Stop()
 }
+
+func TestESLoadFunc(t *testing.T) {
+	text := datafile()
+	d := EasyDate(2011, 1, 19)
+	//testIndex := "pdxcmd_test"
+
+	var stmts []Statement
+	//stmts := make([]Statement, 0)
+	c := make(chan []string)
+	go ParseDoc(text, c)
+	for s := range c {
+		stmt := ParseTripleStmt(s, d)
+		fmt.Println(stmt)
+		stmts = append(stmts, stmt)
+	}
+
+	fmt.Printf("%#v\n", c)
+
+	esc := ESConnect("localhost")
+	LoadStatments(&stmts, esc, "watcat", "pdxcmd")
+
+}
