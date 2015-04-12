@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/shutej/elastigo/lib"
+	"github.com/mattbaird/elastigo/lib"
 )
 
 //Statement contains fields for speaker and what they said

@@ -2,6 +2,7 @@ package pdxcmd
 
 import (
 	"encoding/json"
+	"fmt"
 	"strings"
 	"testing"
 )
@@ -27,4 +28,20 @@ func TestSpeakerQuery(t *testing.T) {
 	if s := QS.Query.Term.Speaker; s != "Adams" {
 		t.Errorf("Speaker value incorrect: %v \n", s)
 	}
+}
+
+func TestQueryStmt(t *testing.T) {
+	speaker := "Adams"
+	//x := SpeakerQuery(speaker)
+	fmt.Println(speaker)
+}
+
+func TestQueryUri(t *testing.T) {
+	//speaker := "Adams"
+	esc := ESConnect("localhost")
+	out, err := esc.SearchUri("wat", "", map[string]interface{}{"q": `Speaker:Adams`, "size": `2`})
+	if err != nil {
+		t.Errorf("Error querying ES DSL: %#v\n", err)
+	}
+	fmt.Printf("Query Search: %#v \n ", out)
 }

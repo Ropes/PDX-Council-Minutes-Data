@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/shutej/elastigo/lib"
+	"github.com/mattbaird/elastigo/lib"
 )
 
 var (

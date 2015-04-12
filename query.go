@@ -1,7 +1,12 @@
 package pdxcmd
 
-import "fmt"
+import (
+	"fmt"
 
+	"github.com/mattbaird/elastigo/lib"
+)
+
+//Generate a json string which to query ES
 func SpeakerQuery(speaker string) string {
 	query := `{
 		"query": {
@@ -9,6 +14,16 @@ func SpeakerQuery(speaker string) string {
 		}
 	}`
 	return fmt.Sprintf(query, speaker)
+}
+
+//Run a generated ES Query string against ES and return the results
+func QueryStmt(c *elastigo.Conn, index, type_str string, query map[string]interface{}) *elastigo.SearchResult {
+	out, err := c.SearchUri(index, type_str, query)
+	if err != nil {
+		fmt.Printf("Failed to create search uri\n")
+		return nil
+	}
+	return &out
 }
 
 /*
