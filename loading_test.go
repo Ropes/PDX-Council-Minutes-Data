@@ -73,11 +73,11 @@ func TestESLoad(t *testing.T) {
 	go ParseDoc(text, c)
 	for s := range c {
 		stmt := ParseTripleStmt(s, d)
-		fmt.Println(stmt)
+		//fmt.Println(stmt)
 		stmts = append(stmts, stmt)
 	}
 
-	fmt.Printf("%#v\n", c)
+	//fmt.Printf("%#v\n", c)
 
 	esc := ESConnect("localhost")
 	blkindxr := esc.NewBulkIndexerErrors(10, 60)
@@ -104,9 +104,8 @@ func TestESLoadFunc(t *testing.T) {
 		stmts = append(stmts, stmt)
 	}
 
-	fmt.Printf("%#v\n", c)
+	//fmt.Printf("%#v\n", c)
 
 	esc := ESConnect("localhost")
 	LoadStatments(&stmts, esc, "watcat", "pdxcmd")
-
 }
