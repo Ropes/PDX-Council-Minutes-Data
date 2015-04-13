@@ -39,9 +39,17 @@ func TestQueryStmt(t *testing.T) {
 func TestQueryUri(t *testing.T) {
 	//speaker := "Adams"
 	esc := ESConnect("localhost")
-	out, err := esc.SearchUri("wat", "", map[string]interface{}{"q": `Speaker:Adams`, "size": `2`})
+	out, err := esc.SearchUri("wat", "", map[string]interface{}{"q": `Speaker:Adams`, "size": `4`})
 	if err != nil {
 		t.Errorf("Error querying ES DSL: %#v\n", err)
 	}
-	fmt.Printf("Query Search: %#v \n ", out)
+
+	fmt.Printf("Query Search: %#v \n\n\n ", out)
+	for i, h := range out.Hits.Hits {
+		marsh, err := json.Marshal(&h.Source)
+		if err != nil {
+			t.Errorf("Failed marshalling JSON: %#v\n", err)
+		}
+		fmt.Printf("%d %#v\n", i, string(marsh))
+	}
 }
