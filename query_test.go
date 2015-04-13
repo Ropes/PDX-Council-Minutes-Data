@@ -30,12 +30,6 @@ func TestSpeakerQuery(t *testing.T) {
 	}
 }
 
-func TestQueryStmt(t *testing.T) {
-	speaker := "Adams"
-	//x := SpeakerQuery(speaker)
-	fmt.Println(speaker)
-}
-
 func TestQueryUri(t *testing.T) {
 	//speaker := "Adams"
 	esc := ESConnect("localhost")
@@ -45,6 +39,21 @@ func TestQueryUri(t *testing.T) {
 	}
 
 	fmt.Printf("Query Search: %#v \n\n\n ", out)
+	for i, h := range out.Hits.Hits {
+		marsh, err := json.Marshal(&h.Source)
+		if err != nil {
+			t.Errorf("Failed marshalling JSON: %#v\n", err)
+		}
+		fmt.Printf("%d %#v\n", i, string(marsh))
+	}
+}
+
+func TestQueryStmt(t *testing.T) {
+	q := "river"
+	esc := ESConnect("localhost")
+	out := StatementQuery(esc, "wat", q)
+
+	fmt.Printf("%s\n", q)
 	for i, h := range out.Hits.Hits {
 		marsh, err := json.Marshal(&h.Source)
 		if err != nil {
