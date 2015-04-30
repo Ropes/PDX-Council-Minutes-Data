@@ -54,7 +54,8 @@ class TestExtract(unittest.TestCase):
         dt = datetime.datetime(2011, 1, 12)
         path = extract_path(dt)
         #print(path, file=stderr)
-        self.assertEqual('/home/ropes/dev/luigi-ETL-Demo/data/2011/1/12', path)
+        target_out = '{}'.format(os.getcwd())
+        self.assertEqual(target_out, path)
 
     def test_fetch_minutes(self):
         dt = datetime.datetime(2011, 1, 12)

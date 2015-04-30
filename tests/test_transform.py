@@ -171,12 +171,12 @@ class TestTransformOps(unittest.TestCase):
             split_doc = split_minutes_content(text)
             self.assertEqual(len(split_doc), 2)
 
-            print(split_doc[1][:3000])
+            #print(split_doc[1][:3000])
             #convos = split_statements_from_discussion(split_doc[1])
             trans_table = dict.fromkeys(map(ord, u"\n"), None)
-            print(trans_table)
+            #print(trans_table)
             sp_text = split_doc[1].translate(trans_table)
-            print(sp_text)
+            #print(sp_text)
             convos = split_statements_via_colon(sp_text)
 
             #print("Statements found: {}".format(convos[:5]))
@@ -207,7 +207,7 @@ meeting and the public is welcomed to weigh in on these throughout the budget pr
         speakers = set()
         for c in convos:
             speakers.add(c[0].strip())
-            #print('{}->"{}"'.format(c[0].strip(), c[1].strip()))
+            print('{}->"{}"'.format(c[0].strip(), c[1].strip()))
         
         self.assertTrue("Saltzman" in speakers)
         self.assertTrue("Fritz" in speakers)

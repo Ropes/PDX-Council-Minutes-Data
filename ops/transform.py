@@ -119,12 +119,12 @@ ordinance.    Sandino
         except Exception as err:
             print("Error parsing orphan statement: {}".format(err))
 
-        print("\nText: '{}'\n<-->Statement:Speaker: {}".format(cs, found, orphan_statement))
+        #print("\nText: '{}'\n<-->Statement:Speaker: {}".format(cs, found, orphan_statement))
         if found and len(found[0]) == 2:
             stmt = Statement(prev_speaker, found[0][0].strip(), index=i)
             statements.append(stmt)
             #stmt.encode_utf8()
-            print(unicode(stmt))
+            #print(unicode(stmt))
 
             new_speaker = found[0][1].strip()
             if new_speaker:
