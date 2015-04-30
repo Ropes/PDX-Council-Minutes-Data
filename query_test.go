@@ -67,3 +67,15 @@ func TestQueryStmt(t *testing.T) {
 		stmts = append(stmts, stmt)
 	}
 }
+
+func TestGetQuery(t *testing.T) {
+	esc := ESConnect("localhost")
+	stmts, err := GetStmts(esc, "wat", "portland", 50)
+	if err != nil {
+		t.Errorf("Error Getting Statments: %#v\n", err)
+	}
+	for i, s := range *stmts {
+		fmt.Printf("%d:: %s\n", i, string(s.Speaker))
+	}
+
+}
