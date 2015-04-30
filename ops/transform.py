@@ -71,7 +71,7 @@ def split_minutes_content(text):
 def split_statements_from_discussion(text):
     '''Break conversations by speaker from the discussion text'''
     #return re.findall('([a-zA-Z -]+):(.*?)\s+[a-zA-Z-]+:', text, re.DOTALL)
-    return re.findall('([a-zA-Z -]+):(.*?)\s\s\s', text, re.DOTALL)
+    return re.findall('([a-zA-Z -]+):(.*?)\s\s+', text, re.DOTALL)
 
 class Statement(object):
     def __init__(self, speaker, statement, index=None):
