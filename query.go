@@ -57,9 +57,3 @@ func QueryStmt(c *elastigo.Conn, index, type_str string, query map[string]interf
 	}
 	return &out
 }
-
-/*
-func QuerySpeech(speechText string) {
-
-}
-*/

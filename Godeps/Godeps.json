@@ -1,8 +1,19 @@
 {
 	"ImportPath": "github.com/ropes/PDX-Council-Minutes-Data",
-	"GoVersion": "devel +f749e3111252 Fri Jul 18 12:41:20 2014 -0700",
-	"Packages": [
-		"github.com/ropes/PDX-Council-Minutes-Data"
-	],
-	"Deps": []
+	"GoVersion": "go1.4.2",
+	"Deps": [
+		{
+			"ImportPath": "github.com/araddon/gou",
+			"Rev": "83835b52401515352c9234fecfa61e55aaab793b"
+		},
+		{
+			"ImportPath": "github.com/bitly/go-hostpool",
+			"Rev": "d0e59c22a56e8dadfed24f74f452cea5a52722d2"
+		},
+		{
+			"ImportPath": "github.com/mattbaird/elastigo/lib",
+			"Comment": "v1.0-153-g8ead27f",
+			"Rev": "8ead27fa065b3674a64c0db01a4314f0ca5f55f3"
+		}
+	]
 }
