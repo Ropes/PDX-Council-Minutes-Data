@@ -2,6 +2,7 @@ package pdxcmd
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/mattbaird/elastigo/lib"
 )
@@ -16,10 +17,11 @@ func SpeakerQuery(speaker string) string {
 	return fmt.Sprintf(query, speaker)
 }
 
-func StatementQuery(c *elastigo.Conn, index, term string) *elastigo.SearchResult {
+//Queries elasticsearch for statements containing a term
+func StatementQuery(c *elastigo.Conn, index, term string, size int) *elastigo.SearchResult {
 	textQ := fmt.Sprintf("Text:%s", term)
 	fmt.Printf("\nTextq: '%s'\n", textQ)
-	query := map[string]interface{}{"q": textQ, "size": `4`}
+	query := map[string]interface{}{"q": textQ, "size": strconv.Itoa(size)}
 	out, err := c.SearchUri(index, "", query)
 	if err != nil {
 		fmt.Printf("Failed to query statements: %#v\n", err)

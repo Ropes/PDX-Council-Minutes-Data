@@ -44,21 +44,26 @@ func TestQueryUri(t *testing.T) {
 		if err != nil {
 			t.Errorf("Failed marshalling JSON: %#v\n", err)
 		}
-		fmt.Printf("%d %#v\n", i, string(marsh))
+		fmt.Printf("Query %s: %d %#v\n", "Adams", i, string(marsh))
 	}
 }
 
 func TestQueryStmt(t *testing.T) {
-	q := "river"
+	q := "portland"
 	esc := ESConnect("localhost")
-	out := StatementQuery(esc, "wat", q)
+	out := StatementQuery(esc, "wat", q, 500)
+
+	stmts := make([]Statement, 0)
 
 	fmt.Printf("%s\n", q)
 	for i, h := range out.Hits.Hits {
-		marsh, err := json.Marshal(&h.Source)
+
+		var stmt Statement
+		err := json.Unmarshal([]byte(*h.Source), &stmt)
 		if err != nil {
 			t.Errorf("Failed marshalling JSON: %#v\n", err)
 		}
-		fmt.Printf("%d %#v\n", i, string(marsh))
+		fmt.Printf("%d Speaker %s\n", i, string(stmt.Speaker))
+		stmts = append(stmts, stmt)
 	}
 }
