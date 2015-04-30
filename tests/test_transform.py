@@ -171,19 +171,19 @@ class TestTransformOps(unittest.TestCase):
             split_doc = split_minutes_content(text)
             self.assertEqual(len(split_doc), 2)
 
-            print(split_doc[1][:3000])
+            #print(split_doc[1][:3000])
             #convos = split_statements_from_discussion(split_doc[1])
             trans_table = dict.fromkeys(map(ord, u"\n"), None)
-            print(trans_table)
+            #print(trans_table)
             sp_text = split_doc[1].translate(trans_table)
-            print(sp_text)
+            #print(sp_text)
             convos = split_statements_via_colon(sp_text)
 
             #print("Statements found: {}".format(convos[:5]))
             for i in range(0, 50):
                 print(unicode(convos[i]))
             self.assertGreater(len(convos), 100)
-            self.assertEqual(1, 2)
+            #self.assertEqual(1, 2)
 
     def test_split_text(self):
         text = '''operating much more efficiently.    Fritz: So the projection is for --   Adams: If I can add on to that.  The greater sales effort to businesses, to sign up for validation, means more uses of the garage, so aggressive sales pitch to businesses has the opportunity in increasing the -- increasing the validation program has the opportunity to bring in more revenue.    Fritz: And --   Geason:  And the cost in the garage will be done with the use of technology.    Fritz: We're not projecting to increase the parking fees?   Geason:  Not at this time.    Fritz: The projection is for $11 million a year in revenue.  How much do we currently get?   Geason: $10 million.    Fritz: About an million increase.  Thank you.  We have had a discussion when reviewing the handy capped permits, but the possibility of allowing the use of handy capped spaces to be used without '''
@@ -202,12 +202,12 @@ class TestTransformOps(unittest.TestCase):
 
     def test_split_text_with_brackets(self):
         text = '''
-meeting and the public is welcomed to weigh in on these throughout the budget process.    Fish: Aye.  Leonard: Aye.  Saltzman: Aye.    Adams: Aye 60 is approved.  [gavel pounded] please read the title for emergency ordinance number 61. Item 61.    Adams: Commissioner Fritz. Fritz: thank you, mayor.  I'm pleased to bring before council an audit settlement with mci metro negotiated by our office of cable communication and franchise management in cooperation with the city attorney's office, it was based on a well-done audit pursuant to an ongoing successfu '''
+meeting and the public is welcomed to weigh in on these throughout the budget process.    Fish: Aye.  Leonard: Aye.  Saltzman: Aye.    Adams: Aye 60 is approved.  [gavel pounded] please read the title for emergency ordinance number 61. Item 61.    Adams: Commissioner Fritz.  Fritz: thank you, mayor.  I'm pleased to bring before council an audit settlement with mci metro negotiated by our office of cable communication and franchise management in cooperation with the city attorney's office, it was based on a well-done audit pursuant to an ongoing successfu '''
         convos = split_statements_from_discussion(text)
         speakers = set()
         for c in convos:
             speakers.add(c[0].strip())
-            #print('{}->"{}"'.format(c[0].strip(), c[1].strip()))
+            print('{}->"{}"'.format(c[0].strip(), c[1].strip()))
         
         self.assertTrue("Saltzman" in speakers)
         self.assertTrue("Fritz" in speakers)
@@ -229,4 +229,4 @@ meeting and the public is welcomed to weigh in on these throughout the budget pr
         self.assertTrue("Fritz" in speakers)
         self.assertTrue("Adams" in speakers)
 
-        self.assertEqual(1,2)
+        #self.assertEqual(1,2)

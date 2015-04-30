@@ -6,7 +6,6 @@ from collections import defaultdict
 
 from ops.transform import (stop_word_placeheld, token_index, 
         freq_dist_dict, remove_punctuation)
-from orm.tables import Token, Tokenlink
 
 def clamp(i, max_num, min_num):
     return max(min(i, max_num), min_num)
@@ -60,55 +59,5 @@ def create_tokens(text):
     text = stop_word_placeheld(text)
     return freq_dist_dict(text)
         
-def load_tokens_to_db(session, tokens, meeting_date):
-    '''Create list of tokens from processed text and meeting date
-    then insert into Tokens table via the session object.
-    Args
-    session: SQLA Session object
-    tokens: FrequencyDist eict of tokens(keys) and their doc count(value)
-    meeting_date: MeetingDate orm object queried from DB
-
-    Returns: Nothing 
-    '''
-    for k,v in tokens.items():
-        if k:
-            t = Token(token=k, count=v)
-            t.MeetingDate = meeting_date
-            session.add(t) 
-    session.commit()
-
 def create_links(processed_text, link_dist=25):
     return link_op(processed_text, link_dist) 
-
-def load_token_links_to_db(session, links, meeting_date):
-    '''Create Token Links within document and store data within database
-    via ORM Tokenlink objects to the TokenLinks table.
-
-    Args
-    session: SQLA Session object
-    links: List of link dicts containing: distance, index, source,and target
-    Return: Nothing
-    '''
-    token_cache = {}
-    for l in links:
-        if l['source'] in token_cache: 
-            source = token_cache[l['source']]
-        else:
-            source = session.query(Token)\
-                .filter(Token.token==l['source']).all()[0]
-            token_cache[l['source']] = source
-        if l['target'] in token_cache:
-            target = token_cache[l['target']]
-        else:
-            target = session.query(Token)\
-                .filter(Token.token==l['target']).all()[0]
-            token_cache[l['target']] = target
-
-        tl = Tokenlink(distance=l['distance'], index=l['index'])
-        tl.Token = source
-        tl.Token1 = target
-        tl.MeetingDate = meeting_date
-        session.add(tl)
-
-    session.commit()
-
