@@ -1,11 +1,13 @@
 from datetime import datetime
 from sys import stderr
 import unittest
+import pickle
 
 import luigi 
 from luigi.worker import Worker
 from luigi import RemoteScheduler
 
+from ops.tram import build_path, home
 from tasks.extract import (ExtractMinutes, ExtractMinuteYearPage,\
                     ExtractMinuteURLs, )
 from tasks.transform import (TransformPDF, CreateTokens, CreateTokenLinks,
@@ -37,6 +39,25 @@ class TestLuigi(unittest.TestCase):
         task = ExtractMinuteURLs(date=self.date) 
         task_kick(task)
 
+    def test_2013_minute_urls(self):
+        year = 2013 
+        task = ExtractMinuteURLs(date=datetime(year,1,1), reset=True) 
+        task_kick(task)
+
+    def test_year_minutes_list(self):
+        year = 2013 
+
+        dpl = ['data', unicode(year)]
+        path = build_path(dpl, prefix_path=home)
+        print("Opening 2013 minutes {}".format(path))
+        p = '{}/date_urls.pkl'.format(path)
+        with open(p, 'rb') as O:
+            urls = pickle.load(O)
+            print(urls)
+            print("{} urls: {}".format(year, urls)) 
+
+
+        self.assertEqual(1,2)
 
     def test_transform(self):
         task = TransformPDF(self.date)

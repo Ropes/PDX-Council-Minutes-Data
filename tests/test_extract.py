@@ -22,7 +22,7 @@ class TestExtract(unittest.TestCase):
             eyi.src = src
 
             d = eyi.minute_year_index()
-            #print(pformat(d), file=stderr)
+            print(pformat(d), file=stderr)
             self.assertIn(2011, d)
             self.assertIn(1999, d)
             self.assertEqual(d[2006],\
