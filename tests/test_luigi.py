@@ -28,7 +28,7 @@ class TestLuigi(unittest.TestCase):
 
     def test_extract_minutes_wo_url(self):
         dt = datetime(2011, 2, 2)
-        task = ExtractMinutes(date=dt)
+        task = ExtractMinutes(date=luigi.DateIntervalParameter(dt))
         task_kick(task)
 
     def test_year_index(self):
@@ -57,7 +57,7 @@ class TestLuigi(unittest.TestCase):
             print("{} urls: {}".format(year, urls)) 
 
 
-        self.assertEqual(1,2)
+        #self.assertEqual(1,2)
 
     def test_transform(self):
         task = TransformPDF(self.date)

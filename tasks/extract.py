@@ -13,7 +13,7 @@ from ops.extract import (extract_path, extract_fetch,ExtractYearIndex,
 
 class ExtractMinutes(luigi.Task):
     url = luigi.Parameter(default=None)
-    date = luigi.Parameter(default=datetime.now())
+    date = luigi.DateIntervalParameter(default=datetime.now())
     base_url = luigi.Parameter(default='http://efiles.portlandoregon.gov')
    
     def requires(self):
@@ -38,7 +38,8 @@ class ExtractMinutes(luigi.Task):
                  
 
 class ExtractMinuteYearPage(luigi.Task):
-    date = luigi.Parameter(default=None)
+    '''Get list of years which can be queried searched for minutes data'''
+    date = luigi.DateIntervalParameter(default=None)
     reset = luigi.Parameter(default=False)
 
     def output(self):
@@ -54,7 +55,8 @@ class ExtractMinuteYearPage(luigi.Task):
             
 
 class ExtractMinuteURLs(luigi.Task):
-    date = luigi.Parameter(default=None)
+    '''Get URLs for all of the minutes files available for defined year'''
+    date = luigi.DateIntervalParameter(default=None)
     reset = luigi.Parameter(default=False)
 
     def requires(self):
