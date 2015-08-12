@@ -43,30 +43,32 @@ class ExtractYearIndex(PDXAuditor):
         return { int(re.findall('([0-9]{4})', a.text)[0]): a.attrib['href']\
                     for a in links if re.findall('([0-9]{4})', a.text) } 
 
-def parse_minute_row(a):
-    dl_url = a.xpath('td[@class="iframe_reclist_icon_view"]/a')[0]\
-                                                    .attrib['href']
-    dtstr = a.xpath('td[@style="text-align:right;white-space:nowrap;"]')\
-                                                    [0].text.strip()
-    date = datetime.strptime(dtstr, '%m/%d/%Y')
-    print('{}, {}'.format(date, dl_url))
+def parse_minute_row(row):
+    try:
+        dl_url = row.xpath('//a[@title="Download File"]')[0].attrib['href']
+        dtstr = row.xpath('./td[5]')[0].text.strip()
+        date = datetime.strptime(dtstr, '%m/%d/%Y')
+    except Exception as err:
+        print("Error Parsing Document Row {}".format(err))
+        date = None
+        dl_url = None
 
     return date, dl_url
 
 
 class ExtractMinutesList(PDXAuditor):
+    #'http://efiles.portlandoregon.gov/Record?q=recContainer%3A3029951&nb=true&pageSize=500'
     base = 'http://efiles.portlandoregon.gov/'
-    path = 'webdrawer.dll/webdrawer/search/rec'
+    path = 'Record'
     
     def __init__(self):
         self.url = None
         self.src = None
 
     def minutes_list_url(self, index):
-        query = {'rows': ['100'],
-            'sm_ncontents': ['uri_{}'.format(index)],
-            'sort1': ['rs_datecreated'],
-            'template': ['reclist_contents']}
+        query = {'pageSize': ['500'],
+            'q': ["recContainer%3A{}".format(index)],
+            'nb': ["true"]}
 
         qstr = '&'.join(['{}={}'.format(k,v[0])\
                             for k,v in query.iteritems()])
@@ -75,11 +77,15 @@ class ExtractMinutesList(PDXAuditor):
     def year_minutes_list(self, index, src=None):
         self.url = self.minutes_list_url(index)
         tree = self.fetch_tree(url=self.url, src=src)
-
-        links = tree.xpath('/html/body/table//tr')[1:-1]
+        links = tree.xpath('/html/body/table/tbody/*')
+        #print("links: {}".format(links), file=stderr)
 
         minutes = {}
+        #[ print(l.xpath("string()"),file=stderr) for l in links ]
+          
+        links = links[1:]
         for a in links:
+            #print(a, file=stderr)
             k,v = parse_minute_row(a)
             minutes.update({k:v})
         return minutes

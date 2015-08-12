@@ -27,13 +27,13 @@ class TestExtract(unittest.TestCase):
             self.assertIn(1999, d)
             self.assertEqual(d[2006],\
             'http://efiles.portlandoregon.gov/webdrawer/rec/3029951/')
-
+            #'http://efiles.portlandoregon.gov/Record?q=recContainer%3A3029951&nb=true&pageSize=500'
 
     def test_minutes_list_query(self):
         eml = ExtractMinutesList()
         x = eml.minutes_list_url(4187317)
         print(x)
-        self.assertEqual(x, 'http://efiles.portlandoregon.gov/webdrawer.dll/webdrawer/search/rec?sort1=rs_datecreated&rows=100&sm_ncontents=uri_4187317&template=reclist_contents')
+        self.assertEqual(x, 'http://efiles.portlandoregon.gov/Record?q=recContainer%3A4187317&nb=true&pageSize=500')
 
 
     def test_minutes_list_files(self):
@@ -46,7 +46,7 @@ class TestExtract(unittest.TestCase):
             eml.url = None
             x = eml.year_minutes_list(index, src=src)
             #print(pformat(x), file=stderr)
-            self.assertGreater(len(x), 10)
+            self.assertGreater(len(x), 50)
             self.assertIn(datetime.datetime(2011, 12, 21, 0, 0), x)
 
 

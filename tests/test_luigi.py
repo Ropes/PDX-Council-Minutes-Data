@@ -44,6 +44,11 @@ class TestLuigi(unittest.TestCase):
         task = ExtractMinuteURLs(date=datetime(year,1,1), reset=True) 
         task_kick(task)
 
+    def test_2014_minute_urls(self):
+        year = 2014
+        task = ExtractMinuteURLs(date=datetime(year,1,1), reset=True) 
+        task_kick(task)
+
     def test_year_minutes_list(self):
         year = 2013 
 
